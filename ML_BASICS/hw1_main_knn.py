@@ -154,21 +154,13 @@ bestPerf = FiveFoldCrossValidation(x_train, y_train)
 
 print("for all 6000 samples - processing")
 
-# Load data - ALL CLASSES
-X_train, y_train = load_mnist('training'  )
-X_test, y_test = load_mnist('testing'   )
+dists_full =  mlBasics.compute_euclidean_distances(x,X_test) 
 
-# Reshape the image data into rows  
-X_train = np.reshape(X_train, (X_train.shape[0], -1))
-X_test = np.reshape(X_test, (X_test.shape[0], -1))
-
-dists_full =  mlBasics.compute_euclidean_distances(X_train,X_test) 
-
-y_test_pred_one = mlBasics.predict_labels(dists, y_train, k=1)    
+y_test_pred_one = mlBasics.predict_labels(dists_full, y, k=1)    
 print ('{:,.2f}'.format(np.mean(y_test_pred_one==y_test)*100), "of test examples classified correctly for k=1.")
 
-bestPerfAll = FiveFoldCrossValidation(X_train, y_train)
-y_test_pred_best = mlBasics.predict_labels(dists, y_train, k=bestPerfAll) 
+bestPerfAll = FiveFoldCrossValidation(x, y)
+y_test_pred_best = mlBasics.predict_labels(dists_full, y, k=bestPerfAll) 
 print ('{:,.2f}'.format(np.mean(y_test_pred_best==y_test)*100), "of test examples classified correctly for k=bestPerformer.")
 # if(np.mean(y_test_pred_one==y_test) == np.mean(y_test_pred_best==y_test)):
 #   print("k=1 performs the best")
