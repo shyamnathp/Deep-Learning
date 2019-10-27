@@ -33,30 +33,18 @@ def predict_labels( dists, labels, k=1):
     
     Should return  pred_labels: M dimensional numpy array
     """
-    #minInRows = np.argmin(dists, axis=0)
+    #using argpartition to get the values lesser than the actual k-position in the dist matrix
+    #lesser value means these training samples are close to the position test sample
     minInRows = np.argpartition(dists, k, axis=1)
-    #result = np.where(dists == minInRows)
-    #index = np.array([])
-    #print(minInRows[:k])
-
-    # for r in range(len(minInRows)):
-    #  print(labels[minInRows[r][:k]])
-
-    # for r in range(len(minInRows)):
-    #  m = stats.mode(labels[minInRows[r][:k]])
-    #  print(m[0])
 
     dim=np.shape(dists)
-    #print(dim[0])
 
     pred_labels = np.array([])
 
+    #majority voting by finding the mode - looking the labels of the finding the k nearest neighbours
     for r in range(len(minInRows)):
         m = stats.mode(labels[minInRows[r][:k]])
         pred_labels = np.append(pred_labels, m[0])   
-    #pred_labels = np.append(pred_labels, labels[minInRows])
-
-    #print(np.shape(pred_labels))
 
     return pred_labels
 

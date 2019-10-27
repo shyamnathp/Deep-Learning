@@ -15,8 +15,7 @@ from sklearn.model_selection import cross_val_score
 x, y = load_mnist('training'  )
 X_test, y_test = load_mnist('testing'   )
 
-#print(np.shape(y_train))
-
+#constructing a training dataset of 1000 with 100 entries per each digital class
 #stratSplit = StratifiedShuffleSplit(y, n_iter=1, test_size=0.5, random_state=42)
 sp = StratifiedShuffleSplit(n_splits=1, test_size=(59/60), random_state=42)
 for train_index, _ in sp.split(x, y):
@@ -32,9 +31,11 @@ dists =  mlBasics.compute_euclidean_distances(x_train,X_test)
 y_test_pred_three = mlBasics.predict_labels(dists, y_train, k=1) 
 y_test_pred_five = mlBasics.predict_labels(dists, y_train, k=5) 
 
+#Report accuracy for k=1 and k=5
 print ('{:,.2f}'.format(np.mean(y_test_pred_three==y_test)*100), "of test examples classified correctly for k=1.")
 print ('{:,.2f}'.format(np.mean(y_test_pred_five==y_test)*100), "of test examples classified correctly for k=5.")
 
+#function to visualize for k=1 and k=5
 def VisualizeMnist():
     minInRowsOne = np.argmin(dists, axis=1)
 
@@ -49,25 +50,15 @@ def VisualizeMnist():
         pixels = first_image.reshape((28, 28))
         axarr[i].imshow(pixels, cmap='gray')
         axarr[i].set_axis_off()
-        #axa.axis('off')
-        #z += 1
-        #plt.pause(.1)
-    #plt.tight_layout()
     plt.show()
     plt.clf()
 
     plt.close(fig=1)   
     minInRowsFive = np.argpartition(dists, 5, axis=1)[:10]
-    #print("lengt is ",len(minInRowsFive))
-
-    #fOne, axarrF = plt.subplots(10, 6)
-    #plt.title("k = 5")
-    #print(minInRowsFive.shape())
+    
     fOne, axarrF = plt.subplots(10, 5)
-    #lengt = len(minInRowsFive) - 1
-    #print("lengt ", lengt)
+    
     for r in range(0,10):
-        print("r is",r)
         top_train_five = x_train[minInRowsFive[r][:5]]
 
         plt.title("k = 5")
@@ -79,25 +70,18 @@ def VisualizeMnist():
             pixels = first_image.reshape((28, 28))
             axarrF[r][i].imshow(pixels, cmap='gray')
             axarrF[r][i].set_axis_off()
-        #axa.axis('off')
-        #z += 1
-        #plt.pause(.1)
-        #axa.axis('off')
-        #z += 1
-        #plt.pause(0.5)
     plt.show()   
     plt.clf()
-        
-    #plt.tight_layout()
-    #plt.show()
-    #plt.clf()
 
 VisualizeMnist()
 
-
+print("confusion matrix for k=1\n")
 print(confusion_matrix(y_test, y_test_pred_three))
+print("confusion matrix for k=5\n")
 print(confusion_matrix(y_test, y_test_pred_five))
 
+
+#5Fold Cross Validation
 def FiveFoldCrossValidation(x1, y1):
     k_range = range(1,15)
     scores = []
@@ -152,6 +136,7 @@ def FiveFoldCrossValidation(x1, y1):
 
 bestPerf = FiveFoldCrossValidation(x_train, y_train)
 
+#now using all the samples
 print("for all 6000 samples - processing")
 
 dists_full =  mlBasics.compute_euclidean_distances(x,X_test) 

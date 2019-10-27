@@ -30,10 +30,6 @@ dists =  mlBasics.compute_euclidean_distances(X_train,X_test)
 #2) Run the code below and predict labels: 
 y_test_pred = mlBasics.predict_labels(dists, y_train) 
 
-# print(np.size(y_test_pred))
-# print(np.size(y_test))
-# print(np.sum(y_test_pred==y_test))
-
 #3) Report results
 # you should get following message '99.91 of test examples classified correctly.'
 print ('{:,.2f}'.format(np.mean(y_test_pred==y_test)*100), "of test examples classified correctly.")
