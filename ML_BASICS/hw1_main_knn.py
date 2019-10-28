@@ -57,19 +57,29 @@ def VisualizeMnist():
     minInRowsFive = np.argpartition(dists, 5, axis=1)[:10]
     
     fOne, axarrF = plt.subplots(10, 5)
+
+    cols = ['Neighbour {}'.format(col) for col in range(1, 6)]
+    rows = ['Test Sample {}'.format(row) for row in range(1,11)]
     
     for r in range(0,10):
         top_train_five = x_train[minInRowsFive[r][:5]]
 
-        plt.title("k = 5")
-
         for i in range(0,5):
+            #plt.title("k = 5")
             first_image = top_train_five[i]
             #print(np.shape(first_image))
             first_image = np.array(first_image, dtype='uint8')
             pixels = first_image.reshape((28, 28))
             axarrF[r][i].imshow(pixels, cmap='gray')
             axarrF[r][i].set_axis_off()
+     
+    #for ax, col in zip(axarrF[0], cols):
+    #    ax.set_title(col)
+    #axarrF[0][0].set_ylabel("hello")
+    for ax, row in zip(axarrF[:,0], rows):
+        ax.set_title(row, rotation=0, fontsize = 6)
+
+    plt.tight_layout()
     plt.show()   
     plt.clf()
 
@@ -137,16 +147,16 @@ def FiveFoldCrossValidation(x1, y1):
 bestPerf = FiveFoldCrossValidation(x_train, y_train)
 
 #now using all the samples
-print("for all 6000 samples - processing")
+# print("for all 6000 samples - processing")
 
-dists_full =  mlBasics.compute_euclidean_distances(x,X_test) 
+# dists_full =  mlBasics.compute_euclidean_distances(x,X_test) 
 
-y_test_pred_one = mlBasics.predict_labels(dists_full, y, k=1)    
-print ('{:,.2f}'.format(np.mean(y_test_pred_one==y_test)*100), "of test examples classified correctly for k=1.")
+# y_test_pred_one = mlBasics.predict_labels(dists_full, y, k=1)    
+# print ('{:,.2f}'.format(np.mean(y_test_pred_one==y_test)*100), "of test examples classified correctly for k=1.")
 
-bestPerfAll = FiveFoldCrossValidation(x, y)
-y_test_pred_best = mlBasics.predict_labels(dists_full, y, k=bestPerfAll) 
-print ('{:,.2f}'.format(np.mean(y_test_pred_best==y_test)*100), "of test examples classified correctly for k=bestPerformer.")
+# bestPerfAll = FiveFoldCrossValidation(x, y)
+# y_test_pred_best = mlBasics.predict_labels(dists_full, y, k=bestPerfAll) 
+# print ('{:,.2f}'.format(np.mean(y_test_pred_best==y_test)*100), "of test examples classified correctly for k=bestPerformer.")
 # if(np.mean(y_test_pred_one==y_test) == np.mean(y_test_pred_best==y_test)):
 #   print("k=1 performs the best")
 
