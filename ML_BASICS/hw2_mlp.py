@@ -1,4 +1,5 @@
 from load_mnist import * 
+import keras
 import numpy as np 
 from keras.models import Sequential
 from keras.layers import Dense
@@ -11,6 +12,11 @@ X_test, y_test = load_mnist('testing'   )
 # Reshape the image data into rows  
 X_train = np.reshape(X_train, (X_train.shape[0], -1))
 X_test = np.reshape(X_test, (X_test.shape[0], -1))
+
+#converting to binary class matrix - one coded vectors 
+#since we are dealing with categorical data
+y_train = keras.utils.to_categorical(y_train, num_classes=10)   #10 is num_classes
+y_test = keras.utils.to_categorical(y_test, num_classes=10)
 
 model = Sequential()
 
