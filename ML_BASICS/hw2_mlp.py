@@ -13,6 +13,7 @@ X_test, y_test = load_mnist('testing'   )
 X_train = np.reshape(X_train, (X_train.shape[0], -1))
 X_test = np.reshape(X_test, (X_test.shape[0], -1))
 
+print(X_train.shape)
 #converting to binary class matrix - one coded vectors 
 #since we are dealing with categorical data
 y_train = keras.utils.to_categorical(y_train, num_classes=10)   #10 is num_classes
