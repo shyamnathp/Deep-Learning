@@ -9,6 +9,8 @@ from load_mnist import *
 import matplotlib.pyplot as plt
 import numpy as np
 
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
 transform = transforms.Compose([transforms.ToTensor(),
                               transforms.Normalize((0.5,), (0.5,)),
                               ])
@@ -47,9 +49,11 @@ def full_operation(optimizer, model, l=3):
             output = model(images)
             cross_entropy_loss = criterion(output, labels)
 
-            for param in model.parameters():
-                l1_regularization += torch.norm(param, 1)
-                l2_regularization += torch.norm(param, 2)
+            lambda1, lambda2 = 0.5, 0.01
+            all_linear1_params = torch.cat([x.view(-1) for x in model.parameters()])
+            all_linear2_params = torch.cat([x.view(-1) for x in model.parameters()])
+            l1_regularization = lambda1 * torch.norm(all_linear1_params, 1)
+            l2_regularization = lambda2 * torch.norm(all_linear2_params, 2)
          
             if(l == 1):
                 loss = cross_entropy_loss + l1_regularization
@@ -84,7 +88,7 @@ def full_operation(optimizer, model, l=3):
     print("Number Of Images Tested =", all_count)
     print("\nModel Accuracy =", (correct_count/all_count))
 
-
+model.to(device)
 optimizer = optim.SGD(model.parameters(), lr=0.003, momentum=0.9)
 optimizerOne = optim.SGD(model.parameters(), lr=0.003, momentum=0.9, nesterov = True)
 
