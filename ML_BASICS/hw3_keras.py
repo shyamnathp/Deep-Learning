@@ -34,7 +34,7 @@ def full_operation(n, regular, hidden, inputSize, Xtrain, Xtest, ytrain, ytest, 
 
     model = Sequential()
     model.add(Dense(units=hidden, activation='relu', input_shape=(inputSize,), kernel_regularizer=regular, bias_regularizer=regular))
-    model.add(Dense(units=hidden,activation='relu', kernel_regularizer=regular, bias_regularizer=regular))
+    model.add(Dense(units=512,activation='relu', kernel_regularizer=regular, bias_regularizer=regular))
     model.add(Dense(units=output,activation='softmax'))
     print(model.summary)
     optimize =  optimizers.SGD(lr=0.01, nesterov=n)
@@ -86,4 +86,4 @@ testX /= 255
 trainY = keras.utils.to_categorical(trainY, num_classes=20)   #10 is num_classes
 testY = keras.utils.to_categorical(testY, num_classes=20)
 
-OperateAndPlot(512, 10304, trainX, testX, trainY, testY, 20)
+OperateAndPlot(2048, 10304, trainX, testX, trainY, testY, 20)
