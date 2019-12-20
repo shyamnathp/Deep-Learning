@@ -61,7 +61,7 @@ class FOOD101():
     
     def get_dls(self, train_ds, valid_ds, bs, n = 0, **kwargs):
         label_dataset = self.train_classes[1:n]
-        train_indices = get_range_indices(self.train_ds.labels, label_dataset)
+        train_indices = get_range_indices(self.train_ds.classes, label_dataset)
         bs = len(self.train_ds/bs)
-        return (DataLoader(train_ds, batch_size=bs, sampler = StratifiedSampler(class_vector= label_dataset, batch_size=bs), shuffle=True, **kwargs),
+        return (DataLoader(train_ds, batch_size=bs, sampler =  torch.utils.data.sampler.SubsetRandomSampler(train_indices), shuffle=True, **kwargs),
                DataLoader(valid_ds, batch_size=bs, shuffle=False, **kwargs))  
