@@ -66,6 +66,8 @@ def main:
     train_ds, valid_ds, classes =  food.get_dataset()
     train_dl, valid_dl = food.get_dls(train_ds, valid_ds, bs=args.batch_number,n=args.number_classes, num_workers=2)
 
+    print("batch size train is", train_dl.batch_size)
+
     if(args.model == VGG)
         model = model.vgg16(pretrained=True)
     else
@@ -75,9 +77,9 @@ def main:
     for param in model.parameters():
         param.requires_grad = False
 
-    for idx, data, target in enumerate(train_dl):
-        torch.save(data, 'data_drive_path{}'.format(idx))
-        torch.save(target, ...
+    # for idx, data, target in enumerate(train_dl):
+    #     torch.save(data, 'data_drive_path{}'.format(idx))
+    #     torch.save(target, ...
 
 if __name__ == "__main__":
     main()
