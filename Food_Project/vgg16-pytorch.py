@@ -214,8 +214,8 @@ def fit_features_to_SVM(features, labels, train_batch_size, K=5 ):
 # In[ ]:
 
 
-data_dir_10 = "/home/student/meowth/imgClas/food/class10"  
-data_dir_30 = "/home/student/meowth/imgClas/food/class30"
+data_dir_10 = "/home/student/blastoise/class10"  
+data_dir_30 = "/home/student/blastoise/class30"
 TRAIN = 'train'
 TEST = 'test'
 log = open("VGG16_Task1.txt", "w")
