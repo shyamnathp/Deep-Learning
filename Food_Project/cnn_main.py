@@ -75,6 +75,10 @@ def main:
     for param in model.parameters():
         param.requires_grad = False
 
+    for idx, data, target in enumerate(train_dl):
+        torch.save(data, 'data_drive_path{}'.format(idx))
+        torch.save(target, ...
+
 if __name__ == "__main__":
     main()
 
