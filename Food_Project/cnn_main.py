@@ -69,7 +69,7 @@ def main():
 
     print("batch size train is", train_dl.batch_size)
 
-    if(args.model == VGG)
+    if(args.model == VGG):
         model = model.vgg16(pretrained=True)
     else
         model = model.resnet34(pretrained=True)
