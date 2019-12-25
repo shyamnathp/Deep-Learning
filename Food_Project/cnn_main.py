@@ -5,8 +5,8 @@ from torch.utils.data import DataLoader
 from torch import nn
 from torch import optim
 from torch.autograd import Variable
-from food101 import FOOD101
-from helper import prepare_data
+# from food101 import FOOD101
+# from helper import prepare_data
 
 # %load_ext autoreload
 # %autoreload 2
@@ -34,17 +34,34 @@ MODEL_PATH = 'model_data/'
 VGG = 'VGG'
 RESNET = 'RESNET'
 
-def parse_args():
-    """Add arguments to parser"""
-    parser = argparse.ArgumentParser(description='Food Classification Project.')
-    parser.add_argument('--model', default=VGG, type=str,
-                        choices=[VGG, RESNET], help='initial model for transfer learning')
-    parser.add_argument('--batch_number', default=3, type=int,
-                        choices=[2, 3], help='number of subsets')
-    parser.add_argument('--number_classes', default=10, type=int,
-                        choices=[10, 30], help='number of classes')
-    args = parser.parse_args()
-    return args
+# Helper method to split dataset into train and test folders
+def prepare_data(filepath, src, dest):
+    classes_images = defaultdict(list)
+    with open(filepath, 'r') as txt:
+        paths = [read.strip() for read in txt.readlines()]
+        for p in paths:
+            food = p.split('/')
+            classes_images[food[0]].append(food[1] + '.jpg')
+
+    for food in classes_images.keys():
+        print("\nCopying images into ",food)
+        if not os.path.exists(os.path.join(dest,food)):
+            os.makedirs(os.path.join(dest,food))
+        for i in classes_images[food]:
+            copy(os.path.join(src,food,i), os.path.join(dest,food,i))
+    print("Copying Done!")
+
+# def parse_args():
+#     """Add arguments to parser"""
+#     parser = argparse.ArgumentParser(description='Food Classification Project.')
+#     parser.add_argument('--model', default=VGG, type=str,
+#                         choices=[VGG, RESNET], help='initial model for transfer learning')
+#     parser.add_argument('--batch_number', default=3, type=int,
+#                         choices=[2, 3], help='number of subsets')
+#     parser.add_argument('--number_classes', default=10, type=int,
+#                         choices=[10, 30], help='number of classes')
+#     args = parser.parse_args()
+#     return args
 
 def main():
     #args = parse_args()
