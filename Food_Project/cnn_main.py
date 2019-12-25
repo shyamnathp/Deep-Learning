@@ -71,7 +71,7 @@ def main():
 
     if(args.model == VGG):
         model = model.vgg16(pretrained=True)
-    else
+    else:
         model = model.resnet34(pretrained=True)
 
     # Freeze model weights
