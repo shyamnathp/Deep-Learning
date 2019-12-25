@@ -58,11 +58,11 @@ def main():
     print("Creating testing data...")
     prepare_data(META_PATH+'test.txt', IMG_PATH, VALID_PATH)
 
-    print("Total number of samples in train folder")
-    !find food-101/train -type d -or -type f -printf '.' | wc -c
+    # print("Total number of samples in train folder")
+    # !find food-101/train -type d -or -type f -printf '.' | wc -c
 
-    print("Total number of samples in validation folder")
-    !find food-101/valid -type d -or -type f -printf '.' | wc -c
+    # print("Total number of samples in validation folder")
+    # !find food-101/valid -type d -or -type f -printf '.' | wc -c
 
     train_ds, valid_ds, classes =  food.get_dataset()
     train_dl, valid_dl = food.get_dls(train_ds, valid_ds, bs=args.batch_number,n=args.number_classes, num_workers=2)
