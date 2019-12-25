@@ -14,7 +14,6 @@ import collections
 from shutil import copy
 from shutil import copytree, rmtree
 import random
-from tqdm import tqdm_notebook as tqdm
 import math
 import time
 # from food101 import FOOD101
