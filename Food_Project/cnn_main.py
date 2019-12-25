@@ -35,8 +35,8 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 #         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 #     ])
 
-FOOD_PATH = "/home/student/blastoise/class10"
-IMG_PATH = FOOD_PATH+"/images"
+FOOD_PATH = "/home/student/blastoise/ImgClass"
+IMG_PATH = "/home/data/food-101/images"
 META_PATH = "/home/data/food-101/meta/"
 TRAIN_PATH = FOOD_PATH+"/train"
 VALID_PATH = FOOD_PATH+"/test"
