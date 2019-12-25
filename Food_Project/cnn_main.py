@@ -6,10 +6,11 @@ from torch import nn
 from torch import optim
 from torch.autograd import Variable
 from food101 import FOOD101
+from helper import prepare_data
 
-%load_ext autoreload
-%autoreload 2
-%matplotlib inline
+# %load_ext autoreload
+# %autoreload 2
+# %matplotlib inline
 
 bs = 64
 epochs = 3
@@ -23,11 +24,11 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 #         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 #     ])
 
-FOOD_PATH = "/home/data/food-101"
+FOOD_PATH = "/home/student/blastoise/class10"
 IMG_PATH = FOOD_PATH+"/images"
-META_PATH = FOOD_PATH+"/meta"
+META_PATH = "home/data/meta"
 TRAIN_PATH = FOOD_PATH+"/train"
-VALID_PATH = FOOD_PATH+"/valid"
+VALID_PATH = FOOD_PATH+"/test"
 MODEL_PATH = 'model_data/'
 
 VGG = 'VGG'
@@ -45,7 +46,7 @@ def parse_args():
     args = parser.parse_args()
     return args
 
-def main:
+def main():
     args = parse_args()
     food = FOOD101()
 
@@ -54,7 +55,7 @@ def main:
     prepare_data(META_PATH+'train.txt', IMG_PATH, TRAIN_PATH)
 
     # Prepare validation data by copying images from food-101/images to food-101/valid using the file test.txt
-    print("Creating validation data...")
+    print("Creating testing data...")
     prepare_data(META_PATH+'test.txt', IMG_PATH, VALID_PATH)
 
     print("Total number of samples in train folder")
