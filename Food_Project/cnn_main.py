@@ -37,7 +37,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 FOOD_PATH = "/home/student/blastoise/class10"
 IMG_PATH = FOOD_PATH+"/images"
-META_PATH = "home/data/meta"
+META_PATH = "home/data/meta/"
 TRAIN_PATH = FOOD_PATH+"/train"
 VALID_PATH = FOOD_PATH+"/test"
 MODEL_PATH = 'model_data/'
