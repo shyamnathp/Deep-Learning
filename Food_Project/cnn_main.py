@@ -47,8 +47,8 @@ def parse_args():
     return args
 
 def main():
-    args = parse_args()
-    food = FOOD101()
+    #args = parse_args()
+    #food = FOOD101()
 
     # Prepare train dataset by copying images from food-101/images to food-101/train using the file train.txt
     print("Creating train data...")
@@ -64,19 +64,19 @@ def main():
     # print("Total number of samples in validation folder")
     # !find food-101/valid -type d -or -type f -printf '.' | wc -c
 
-    train_ds, valid_ds, classes =  food.get_dataset()
-    train_dl, valid_dl = food.get_dls(train_ds, valid_ds, bs=args.batch_number,n=args.number_classes, num_workers=2)
+    # train_ds, valid_ds, classes =  food.get_dataset()
+    # train_dl, valid_dl = food.get_dls(train_ds, valid_ds, bs=args.batch_number,n=args.number_classes, num_workers=2)
 
-    print("batch size train is", train_dl.batch_size)
+    # print("batch size train is", train_dl.batch_size)
 
-    if(args.model == VGG):
-        model = model.vgg16(pretrained=True)
-    else:
-        model = model.resnet34(pretrained=True)
+    # if(args.model == VGG):
+    #     model = model.vgg16(pretrained=True)
+    # else:
+    #     model = model.resnet34(pretrained=True)
 
-    # Freeze model weights
-    for param in model.parameters():
-        param.requires_grad = False
+    # # Freeze model weights
+    # for param in model.parameters():
+    #     param.requires_grad = False
 
     # for idx, data, target in enumerate(train_dl):
     #     torch.save(data, 'data_drive_path{}'.format(idx))
