@@ -221,6 +221,7 @@ if use_gpu:
     vgg16_nc.cuda() #.cuda() will move everything to the GPU side
 
 ImageDirectory = [data_dir_10, data_dir_30]
+mean_accuracy_of_5_splits=0.0
 for data_dir in ImageDirectory:
     
     # Get Data
@@ -236,12 +237,15 @@ for data_dir in ImageDirectory:
     imgfeatures_vgg, imglabels_vgg = get_features(vgg16_nc, train_batch_size, number_of_classes = class_size)
     mean_accuracy, sd = fit_features_to_SVM(imgfeatures_vgg,
                                         imglabels_vgg, train_batch_size, K=5 )
+    mean_accuracy_of_5_splits+=mean_accuracy
     print("The mean and standard deviation of classification for vgg 16 is: ",
       mean_accuracy, sd, "for class size: ", class_size, file = log)
     del dataloaders, image_datasets, imgfeatures_vgg, imglabels_vgg
 del vgg16_nc
+print("Average Classification accuracy over 5 splits for vgg16 : " + str(mean_accuracy_of_5_splits/5.0))
 
 
+mean_accuracy_of_5_splits=0.0
 resnet34_nc = set_up_network('resnet34', freeze_training = True)
 if use_gpu:
     resnet34_nc.to(torch.device("cuda")) #.cuda() will move everything to the GPU side
@@ -261,10 +265,12 @@ for data_dir in ImageDirectory:
     imgfeatures_res, imglabels_res = get_features(resnet34_nc, train_batch_size, number_of_classes = class_size)
     mean_accuracy, sd = fit_features_to_SVM(imgfeatures_res,
                                         imglabels_res, train_batch_size, K=5 )
+    mean_accuracy_of_5_splits+=mean_accuracy
     print("The mean and standard deviation of classification for resnet 34 is: ",
       mean_accuracy, sd, "for class size: ", class_size, file = log)
     del dataloaders, image_datasets, imgfeatures_res, imglabels_res
 del resnet34_nc
+print("Average Classification accuracy over 5 splits for resnet 34 : " + str(mean_accuracy_of_5_splits/5.0))
 log.close()
 
 
