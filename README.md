@@ -1,4 +1,4 @@
-- Select randomly 3 subsets of 10 classes and 2 subsets of 30 classes
+- Select randomly 3 subsets of 10 classes and 2 subsets of 30 classes [Shyam : COMPLETE]
 - Report the average classification accuracy over the 5 splits above
 - i) Plot the confusion matrix for one of the 3 random splits of 10 classes
   ii) report the classification accuracy of each class individually
