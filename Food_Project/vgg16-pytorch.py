@@ -220,7 +220,7 @@ vgg16_nc = set_up_network('vgg16', freeze_training = True)
 if use_gpu:
     vgg16_nc.cuda() #.cuda() will move everything to the GPU side
 
-ImageDirectory = [data_dir_10]
+ImageDirectory = [data_dir_10, data_dir_30]
 for data_dir in ImageDirectory:
     
     # Get Data
