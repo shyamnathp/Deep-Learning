@@ -116,14 +116,10 @@ def set_up_network(net, freeze_training = True, clip_classifier = True, classifi
             network.classifier = nn.Sequential(*features) # Replace the model classifier
     
     elif net == 'resnet34':
-        network = models.resnet34(pretrained=True)
-        if freeze_training:
-            for param in network.features.parameters():
-                param.require_grad = False
+        old_network = models.resnet34(pretrained=True)
         
         if clip_classifier:
-            features = list(network.classifier.children())[:-4] # Remove last layer
-            network.classifier = nn.Sequential(*features) # Replace the model classifier
+            network = torch.nn.Sequential(*(list(old_network.children())[:-1]))
     if classification_size != 1000 and clip_classifier == False:
         num_features = network.classifier[6].in_features
         features = list(network.classifier.children())[:-1] # Remove last layer
@@ -214,7 +210,7 @@ def fit_features_to_SVM(features, labels, train_batch_size, K=5 ):
 # In[ ]:
 
 
-data_dir_10 = "/home/student/blastoise/class10"  
+data_dir_10 = "/home/student/blastoise/class10"
 data_dir_30 = "/home/student/blastoise/class30"
 TRAIN = 'train'
 TEST = 'test'
@@ -224,7 +220,7 @@ vgg16_nc = set_up_network('vgg16', freeze_training = True)
 if use_gpu:
     vgg16_nc.cuda() #.cuda() will move everything to the GPU side
 
-ImageDirectory = [data_dir_10, data_dir_30]
+ImageDirectory = [data_dir_10]
 for data_dir in ImageDirectory:
     
     # Get Data
@@ -244,6 +240,31 @@ for data_dir in ImageDirectory:
       mean_accuracy, sd, "for class size: ", class_size, file = log)
     del dataloaders, image_datasets, imgfeatures_vgg, imglabels_vgg
 del vgg16_nc
+
+
+resnet34_nc = set_up_network('resnet34', freeze_training = True)
+if use_gpu:
+    resnet34_nc.to(torch.device("cuda")) #.cuda() will move everything to the GPU side
+
+for data_dir in ImageDirectory:
+    
+    # Get Data
+    dataloaders, image_datasets = data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 1 )
+    dataset_sizes, classification_size = update_details(image_datasets)
+    
+    # Update train_batch_size
+    train_batch_size = dataset_sizes[TRAIN]
+#     train_batch_size = 10
+    class_size = classification_size
+    
+    # Get the image features for the imagenet trained network.
+    imgfeatures_res, imglabels_res = get_features(resnet34_nc, train_batch_size, number_of_classes = class_size)
+    mean_accuracy, sd = fit_features_to_SVM(imgfeatures_res,
+                                        imglabels_res, train_batch_size, K=5 )
+    print("The mean and standard deviation of classification for resnet 34 is: ",
+      mean_accuracy, sd, "for class size: ", class_size, file = log)
+    del dataloaders, image_datasets, imgfeatures_res, imglabels_res
+del resnet34_nc
 log.close()
 
 
@@ -560,5 +581,6 @@ for data_dir in ImageDirectory:
     torch.save(vgg16.state_dict(), "VGG16_v1_task3_size_"+str(classification_size)+".pt")
     del vgg16, criterion, optimizer_ft, exp_lr_scheduler, dataloaders, image_datasets
 log.close()
+
 
 
