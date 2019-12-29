@@ -489,8 +489,8 @@ def set_up_network_param(net_type ='vgg16', freeze_training = False, clip_classi
 # In[1]:
 
 
-data_dir_10 = "/home/student/meowth/imgClas/food/class10"  
-data_dir_30 = "/home/student/meowth/imgClas/food/class30"
+data_dir_10 = "/home/student/blastoise/class10"  
+data_dir_30 = "/home/student/blastoise/class30"
 data_dir_100 = "/home/student/meowth/imgClas/food/class100"
 ImageDirectory = [data_dir_10, data_dir_30, data_dir_100 ]
 
