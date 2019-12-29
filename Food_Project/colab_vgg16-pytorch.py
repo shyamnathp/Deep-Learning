@@ -116,10 +116,14 @@ def set_up_network(net, freeze_training = True, clip_classifier = True, classifi
             network.classifier = nn.Sequential(*features) # Replace the model classifier
     
     elif net == 'resnet34':
-        old_network = models.resnet34(pretrained=True)
+        network = models.resnet34(pretrained=True)
+        if freeze_training:
+            for param in network.features.parameters():
+                param.require_grad = False
         
         if clip_classifier:
-            network = torch.nn.Sequential(*(list(old_network.children())[:-1]))
+            features = list(network.classifier.children())[:-4] # Remove last layer
+            network.classifier = nn.Sequential(*features) # Replace the model classifier
     if classification_size != 1000 and clip_classifier == False:
         num_features = network.classifier[6].in_features
         features = list(network.classifier.children())[:-1] # Remove last layer
@@ -210,8 +214,8 @@ def fit_features_to_SVM(features, labels, train_batch_size, K=5 ):
 # In[ ]:
 
 
-data_dir_10 = "/home/student/blastoise/class10"
-data_dir_30 = "/home/student/blastoise/class30"
+data_dir_10 = "drive/My Drive/REMOVE/food101"  
+#data_dir_30 = "/home/student/blastoise/class30"
 TRAIN = 'train'
 TEST = 'test'
 log = open("VGG16_Task1.txt", "w")
@@ -220,8 +224,7 @@ vgg16_nc = set_up_network('vgg16', freeze_training = True)
 if use_gpu:
     vgg16_nc.cuda() #.cuda() will move everything to the GPU side
 
-ImageDirectory = [data_dir_10, data_dir_30]
-mean_accuracy_of_5_splits=0.0
+ImageDirectory = [data_dir_10]
 for data_dir in ImageDirectory:
     
     # Get Data
@@ -237,40 +240,10 @@ for data_dir in ImageDirectory:
     imgfeatures_vgg, imglabels_vgg = get_features(vgg16_nc, train_batch_size, number_of_classes = class_size)
     mean_accuracy, sd = fit_features_to_SVM(imgfeatures_vgg,
                                         imglabels_vgg, train_batch_size, K=5 )
-    mean_accuracy_of_5_splits+=mean_accuracy
     print("The mean and standard deviation of classification for vgg 16 is: ",
       mean_accuracy, sd, "for class size: ", class_size, file = log)
     del dataloaders, image_datasets, imgfeatures_vgg, imglabels_vgg
 del vgg16_nc
-print("Average Classification accuracy over 5 splits for vgg16 : " + str(mean_accuracy_of_5_splits/5.0))
-
-
-mean_accuracy_of_5_splits=0.0
-resnet34_nc = set_up_network('resnet34', freeze_training = True)
-if use_gpu:
-    resnet34_nc.to(torch.device("cuda")) #.cuda() will move everything to the GPU side
-
-for data_dir in ImageDirectory:
-    
-    # Get Data
-    dataloaders, image_datasets = data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 1 )
-    dataset_sizes, classification_size = update_details(image_datasets)
-    
-    # Update train_batch_size
-    train_batch_size = dataset_sizes[TRAIN]
-#     train_batch_size = 10
-    class_size = classification_size
-    
-    # Get the image features for the imagenet trained network.
-    imgfeatures_res, imglabels_res = get_features(resnet34_nc, train_batch_size, number_of_classes = class_size)
-    mean_accuracy, sd = fit_features_to_SVM(imgfeatures_res,
-                                        imglabels_res, train_batch_size, K=5 )
-    mean_accuracy_of_5_splits+=mean_accuracy
-    print("The mean and standard deviation of classification for resnet 34 is: ",
-      mean_accuracy, sd, "for class size: ", class_size, file = log)
-    del dataloaders, image_datasets, imgfeatures_res, imglabels_res
-del resnet34_nc
-print("Average Classification accuracy over 5 splits for resnet 34 : " + str(mean_accuracy_of_5_splits/5.0))
 log.close()
 
 
@@ -516,10 +489,10 @@ def set_up_network_param(net_type ='vgg16', freeze_training = False, clip_classi
 # In[1]:
 
 
-data_dir_10 = "/home/student/blastoise/class10"  
-data_dir_30 = "/home/student/blastoise/class30"
-data_dir_100 = "/home/student/meowth/imgClas/food/class100"
-ImageDirectory = [data_dir_10, data_dir_30, data_dir_100 ]
+data_dir_10 = "drive/My Drive/REMOVE/food101"
+#data_dir_30 = "/home/student/meowth/imgClas/food/class30"
+#data_dir_100 = "/home/student/meowth/imgClas/food/class100"
+ImageDirectory = [data_dir_10]
 
 TRAIN = 'train'
 TEST = 'test'
