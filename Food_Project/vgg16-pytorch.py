@@ -199,6 +199,8 @@ def fit_features_to_SVM(features, labels, train_batch_size, K=5 ):
         s=model.score(features[test, :], labels[test])
         print(i,"/",K,"The score for this classification is: ", s, file = log)
         scores.append(s)
+    print("Confusion Matrix : ")
+    print(confusion_matrix(model.predict(features), labels))
     return np.mean(scores), np.std(scores)
 
 # This is an alternative implementation using the same thing.

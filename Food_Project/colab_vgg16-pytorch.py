@@ -193,24 +193,15 @@ def fit_features_to_SVM(features, labels, train_batch_size, K=5 ):
     print(labels.shape)
 
     i=0
-    features_list=[]
-    labels_list=[]
     for train, test in kf.split(features):
         i+=1
         model = sklearn.svm.SVC(C=100)#, C=1, gamma=0)
         model.fit(features[train, :], labels[train].ravel())
         s=model.score(features[test, :], labels[test])
-        #features_list.extend(int(x) for x in features[test, :])
-        print(features[test, :])
-        print(labels[test])
-        #features_list += (features[test, :])
-        #labels_list += (labels[test])
         print(i,"/",K,"The score for this classification is: ", s, file = log)
         scores.append(s)
-    print(features_list)
-    print(labels_list)
     print("Confusion Matrix :")
-    print(confusion_matrix(features_list, labels_list))
+    print(confusion_matrix(model.predict(features), labels))
     return np.mean(scores), np.std(scores)
 
 # This is an alternative implementation using the same thing.
@@ -599,6 +590,7 @@ for data_dir in ImageDirectory:
     torch.save(vgg16.state_dict(), "VGG16_v1_task3_size_"+str(classification_size)+".pt")
     del vgg16, criterion, optimizer_ft, exp_lr_scheduler, dataloaders, image_datasets
 log.close()
+
 
 
 

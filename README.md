@@ -1,6 +1,6 @@
 - Select randomly 3 subsets of 10 classes and 2 subsets of 30 classes [Shyam : COMPLETE]
 - Report the average classification accuracy over the 5 splits above [Kunal : COMPLETE]
-- i) Plot the confusion matrix for one of the 3 random splits of 10 classes
+- i) Plot the confusion matrix for one of the 3 random splits of 10 classes [Kunal : COMPLETE]
   ii) report the classification accuracy of each class individually
   iii) plot the confusion matrix for the tasks as well (Question : Meaning confusion matrix for all classes from step ii above?)
 - Compute classification accuracies with training and testing on all the 101 classes
