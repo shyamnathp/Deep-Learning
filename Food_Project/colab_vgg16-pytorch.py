@@ -26,6 +26,7 @@ import copy
 import sklearn.svm
 from sklearn.model_selection import train_test_split, KFold
 import random
+from sklearn.metrics import confusion_matrix
 
 plt.ion() 
 
@@ -137,7 +138,6 @@ def set_up_network(net, freeze_training = True, clip_classifier = True, classifi
 
 def get_features(ipnet, train_batches = 10, number_of_classes = 10):
 
-    print("getting features")
     imgfeatures = []
     imglabels = []
     if classification_size < number_of_classes:
@@ -184,7 +184,6 @@ def get_features(ipnet, train_batches = 10, number_of_classes = 10):
 
 def fit_features_to_SVM(features, labels, train_batch_size, K=5 ):
 
-    print("fitting to SVM")
     kf = sklearn.model_selection.KFold(n_splits=K)
     kf.get_n_splits(features)
     scores = []
@@ -201,7 +200,7 @@ def fit_features_to_SVM(features, labels, train_batch_size, K=5 ):
         s=model.score(features[test, :], labels[test])
         print(i,"/",K,"The score for this classification is: ", s, file = log)
         scores.append(s)
-    print("Confusion Matrix : ")
+    print("Confusion Matrix :")
     print(confusion_matrix(model.predict(features), labels))
     return np.mean(scores), np.std(scores)
 
@@ -214,8 +213,8 @@ def fit_features_to_SVM(features, labels, train_batch_size, K=5 ):
 # In[ ]:
 
 
-data_dir_10 = "/home/student/blastoise/class10"
-data_dir_30 = "/home/student/blastoise/class30"
+data_dir_10 = "drive/My Drive/REMOVE/food_2"
+#data_dir_30 = "/home/student/blastoise/class30"
 TRAIN = 'train'
 TEST = 'test'
 log = open("VGG16_Task1.txt", "w")
@@ -224,11 +223,10 @@ vgg16_nc = set_up_network('vgg16', freeze_training = True)
 if use_gpu:
     vgg16_nc.cuda() #.cuda() will move everything to the GPU side
 
-ImageDirectory = [data_dir_10, data_dir_30]
+ImageDirectory = [data_dir_10]
 mean_accuracy_of_5_splits=0.0
 for data_dir in ImageDirectory:
     
-    print(data_dir)
     # Get Data
     dataloaders, image_datasets = data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 1 )
     dataset_sizes, classification_size = update_details(image_datasets)
@@ -592,6 +590,8 @@ for data_dir in ImageDirectory:
     torch.save(vgg16.state_dict(), "VGG16_v1_task3_size_"+str(classification_size)+".pt")
     del vgg16, criterion, optimizer_ft, exp_lr_scheduler, dataloaders, image_datasets
 log.close()
+
+
 
 
 
