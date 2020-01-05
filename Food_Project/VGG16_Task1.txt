@@ -1,0 +1,320 @@
+Loaded 7500 images under train
+Loaded 2500 images under test
+Classes: 
+The selected classes are:  [5, 9, 2, 4, 0, 3, 6, 1, 8, 7]
+Training batch 0/7500
+Training batch 100/7500
+Training batch 200/7500
+Training batch 300/7500
+Training batch 400/7500
+Training batch 500/7500
+Training batch 600/7500
+Training batch 700/7500
+Training batch 800/7500
+Training batch 900/7500
+Training batch 1000/7500
+Training batch 1100/7500
+Training batch 1200/7500
+Training batch 1300/7500
+Training batch 1400/7500
+Training batch 1500/7500
+Training batch 1600/7500
+Training batch 1700/7500
+Training batch 1800/7500
+Training batch 1900/7500
+Training batch 2000/7500
+Training batch 2100/7500
+Training batch 2200/7500
+Training batch 2300/7500
+Training batch 2400/7500
+Training batch 2500/7500
+Training batch 2600/7500
+Training batch 2700/7500
+Training batch 2800/7500
+Training batch 2900/7500
+Training batch 3000/7500
+Training batch 3100/7500
+Training batch 3200/7500
+Training batch 3300/7500
+Training batch 3400/7500
+Training batch 3500/7500
+Training batch 3600/7500
+Training batch 3700/7500
+Training batch 3800/7500
+Training batch 3900/7500
+Training batch 4000/7500
+Training batch 4100/7500
+Training batch 4200/7500
+Training batch 4300/7500
+Training batch 4400/7500
+Training batch 4500/7500
+Training batch 4600/7500
+Training batch 4700/7500
+Training batch 4800/7500
+Training batch 4900/7500
+Training batch 5000/7500
+Training batch 5100/7500
+Training batch 5200/7500
+Training batch 5300/7500
+Training batch 5400/7500
+Training batch 5500/7500
+Training batch 5600/7500
+Training batch 5700/7500
+Training batch 5800/7500
+Training batch 5900/7500
+Training batch 6000/7500
+Training batch 6100/7500
+Training batch 6200/7500
+Training batch 6300/7500
+Training batch 6400/7500
+Training batch 6500/7500
+Training batch 6600/7500
+Training batch 6700/7500
+Training batch 6800/7500
+Training batch 6900/7500
+Training batch 7000/7500
+Training batch 7100/7500
+Training batch 7200/7500
+Training batch 7300/7500
+Training batch 7400/7500
+1 / 5 The score for this classification is:  0.641333333333
+2 / 5 The score for this classification is:  0.666666666667
+3 / 5 The score for this classification is:  0.644666666667
+4 / 5 The score for this classification is:  0.605333333333
+5 / 5 The score for this classification is:  0.618666666667
+The mean and standard deviation of classification for vgg 16 is:  0.635333333333 0.0213666406656 for class size:  10
+Loaded 22500 images under train
+Loaded 7500 images under test
+Classes: 
+The selected classes are:  [28, 12, 1, 20, 26, 19, 22, 21, 2, 11, 3, 25, 15, 9, 0, 23, 13, 24, 29, 27, 10, 14, 5, 6, 17, 18, 4, 7, 8, 16]
+Training batch 0/22500
+Training batch 100/22500
+Training batch 200/22500
+Training batch 300/22500
+Training batch 400/22500
+Training batch 500/22500
+Training batch 600/22500
+Training batch 700/22500
+Training batch 800/22500
+Training batch 900/22500
+Training batch 1000/22500
+Training batch 1100/22500
+Training batch 1200/22500
+Training batch 1300/22500
+Training batch 1400/22500
+Training batch 1500/22500
+Training batch 1600/22500
+Training batch 1700/22500
+Training batch 1800/22500
+Training batch 1900/22500
+Training batch 2000/22500
+Training batch 2100/22500
+Training batch 2200/22500
+Training batch 2300/22500
+Training batch 2400/22500
+Training batch 2500/22500
+Training batch 2600/22500
+Training batch 2700/22500
+Training batch 2800/22500
+Training batch 2900/22500
+Training batch 3000/22500
+Training batch 3100/22500
+Training batch 3200/22500
+Training batch 3300/22500
+Training batch 3400/22500
+Training batch 3500/22500
+Training batch 3600/22500
+Training batch 3700/22500
+Training batch 3800/22500
+Training batch 3900/22500
+Training batch 4000/22500
+Training batch 4100/22500
+Training batch 4200/22500
+Training batch 4300/22500
+Training batch 4400/22500
+Training batch 4500/22500
+Training batch 4600/22500
+Training batch 4700/22500
+Training batch 4800/22500
+Training batch 4900/22500
+Training batch 5000/22500
+Training batch 5100/22500
+Training batch 5200/22500
+Training batch 5300/22500
+Training batch 5400/22500
+Training batch 5500/22500
+Training batch 5600/22500
+Training batch 5700/22500
+Training batch 5800/22500
+Training batch 5900/22500
+Training batch 6000/22500
+Training batch 6100/22500
+Training batch 6200/22500
+Training batch 6300/22500
+Training batch 6400/22500
+Training batch 6500/22500
+Training batch 6600/22500
+Training batch 6700/22500
+Training batch 6800/22500
+Training batch 6900/22500
+Training batch 7000/22500
+Training batch 7100/22500
+Training batch 7200/22500
+Training batch 7300/22500
+Training batch 7400/22500
+Training batch 7500/22500
+Training batch 7600/22500
+Training batch 7700/22500
+Training batch 7800/22500
+Training batch 7900/22500
+Training batch 8000/22500
+Training batch 8100/22500
+Training batch 8200/22500
+Training batch 8300/22500
+Training batch 8400/22500
+Training batch 8500/22500
+Training batch 8600/22500
+Training batch 8700/22500
+Training batch 8800/22500
+Training batch 8900/22500
+Training batch 9000/22500
+Training batch 9100/22500
+Training batch 9200/22500
+Training batch 9300/22500
+Training batch 9400/22500
+Training batch 9500/22500
+Training batch 9600/22500
+Training batch 9700/22500
+Training batch 9800/22500
+Training batch 9900/22500
+Training batch 10000/22500
+Training batch 10100/22500
+Training batch 10200/22500
+Training batch 10300/22500
+Training batch 10400/22500
+Training batch 10500/22500
+Training batch 10600/22500
+Training batch 10700/22500
+Training batch 10800/22500
+Training batch 10900/22500
+Training batch 11000/22500
+Training batch 11100/22500
+Training batch 11200/22500
+Training batch 11300/22500
+Training batch 11400/22500
+Training batch 11500/22500
+Training batch 11600/22500
+Training batch 11700/22500
+Training batch 11800/22500
+Training batch 11900/22500
+Training batch 12000/22500
+Training batch 12100/22500
+Training batch 12200/22500
+Training batch 12300/22500
+Training batch 12400/22500
+Training batch 12500/22500
+Training batch 12600/22500
+Training batch 12700/22500
+Training batch 12800/22500
+Training batch 12900/22500
+Training batch 13000/22500
+Training batch 13100/22500
+Training batch 13200/22500
+Training batch 13300/22500
+Training batch 13400/22500
+Training batch 13500/22500
+Training batch 13600/22500
+Training batch 13700/22500
+Training batch 13800/22500
+Training batch 13900/22500
+Training batch 14000/22500
+Training batch 14100/22500
+Training batch 14200/22500
+Training batch 14300/22500
+Training batch 14400/22500
+Training batch 14500/22500
+Training batch 14600/22500
+Training batch 14700/22500
+Training batch 14800/22500
+Training batch 14900/22500
+Training batch 15000/22500
+Training batch 15100/22500
+Training batch 15200/22500
+Training batch 15300/22500
+Training batch 15400/22500
+Training batch 15500/22500
+Training batch 15600/22500
+Training batch 15700/22500
+Training batch 15800/22500
+Training batch 15900/22500
+Training batch 16000/22500
+Training batch 16100/22500
+Training batch 16200/22500
+Training batch 16300/22500
+Training batch 16400/22500
+Training batch 16500/22500
+Training batch 16600/22500
+Training batch 16700/22500
+Training batch 16800/22500
+Training batch 16900/22500
+Training batch 17000/22500
+Training batch 17100/22500
+Training batch 17200/22500
+Training batch 17300/22500
+Training batch 17400/22500
+Training batch 17500/22500
+Training batch 17600/22500
+Training batch 17700/22500
+Training batch 17800/22500
+Training batch 17900/22500
+Training batch 18000/22500
+Training batch 18100/22500
+Training batch 18200/22500
+Training batch 18300/22500
+Training batch 18400/22500
+Training batch 18500/22500
+Training batch 18600/22500
+Training batch 18700/22500
+Training batch 18800/22500
+Training batch 18900/22500
+Training batch 19000/22500
+Training batch 19100/22500
+Training batch 19200/22500
+Training batch 19300/22500
+Training batch 19400/22500
+Training batch 19500/22500
+Training batch 19600/22500
+Training batch 19700/22500
+Training batch 19800/22500
+Training batch 19900/22500
+Training batch 20000/22500
+Training batch 20100/22500
+Training batch 20200/22500
+Training batch 20300/22500
+Training batch 20400/22500
+Training batch 20500/22500
+Training batch 20600/22500
+Training batch 20700/22500
+Training batch 20800/22500
+Training batch 20900/22500
+Training batch 21000/22500
+Training batch 21100/22500
+Training batch 21200/22500
+Training batch 21300/22500
+Training batch 21400/22500
+Training batch 21500/22500
+Training batch 21600/22500
+Training batch 21700/22500
+Training batch 21800/22500
+Training batch 21900/22500
+Training batch 22000/22500
+Training batch 22100/22500
+Training batch 22200/22500
+Training batch 22300/22500
+Training batch 22400/22500
+1 / 5 The score for this classification is:  0.511111111111
+2 / 5 The score for this classification is:  0.513111111111
+3 / 5 The score for this classification is:  0.481555555556
+4 / 5 The score for this classification is:  0.502888888889
+5 / 5 The score for this classification is:  0.500222222222
+The mean and standard deviation of classification for vgg 16 is:  0.501777777778 0.0112084624115 for class size:  30
