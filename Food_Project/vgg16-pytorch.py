@@ -141,6 +141,7 @@ def set_up_network(net, freeze_training = True, clip_classifier = True, classifi
 
 def get_features(ipnet, train_batches = 10, number_of_classes = 10):
 
+    print("getting features")
     imgfeatures = []
     imglabels = []
     if classification_size < number_of_classes:
@@ -187,6 +188,7 @@ def get_features(ipnet, train_batches = 10, number_of_classes = 10):
 
 def fit_features_to_SVM(features, labels, train_batch_size, K=5 ):
 
+    print("fitting to SVM")
     kf = sklearn.model_selection.KFold(n_splits=K)
     kf.get_n_splits(features)
     scores = []
@@ -227,6 +229,7 @@ if use_gpu:
 ImageDirectory = [data_dir_10, data_dir_30]
 for data_dir in ImageDirectory:
     
+    print(data_dir)
     # Get Data
     dataloaders, image_datasets = data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 1 )
     dataset_sizes, classification_size = update_details(image_datasets)
