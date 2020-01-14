@@ -202,38 +202,38 @@ def get_features(ipnet, train_batches = 10, number_of_classes = 10):
 
 # In[ ]:
 
-'''
-def fit_features_to_SVM(features, labels, train_batch_size, K=5 ):
+# '''
+# def fit_features_to_SVM(features, labels, train_batch_size, K=5 ):
 
-    kf = sklearn.model_selection.KFold(n_splits=K)
-    kf.get_n_splits(features)
-    scores = []
-    features = np.array(features)
-    labels = np.array(labels)
-    print(features.shape)
-    print(labels.shape)
+#     kf = sklearn.model_selection.KFold(n_splits=K)
+#     kf.get_n_splits(features)
+#     scores = []
+#     features = np.array(features)
+#     labels = np.array(labels)
+#     print(features.shape)
+#     print(labels.shape)
 
-    i=0
-    for train, test in kf.split(features):
-        i+=1
-        model = sklearn.svm.SVC(C=100)#, C=1, gamma=0)
-        model.fit(features[train, :], labels[train].ravel())
-        print("Confusion Matrix", file=log)
-        print(confusion_matrix(y_label, out_predict), file=log)  
-        print("-"*30, file=log)
-#         print("Classification Report")
-#         print(classification_report(y_label,out_predict))
+#     i=0
+#     for train, test in kf.split(features):
+#         i+=1
+#         model = sklearn.svm.SVC(C=100)#, C=1, gamma=0)
+#         model.fit(features[train, :], labels[train].ravel())
+#         print("Confusion Matrix", file=log)
+#         print(confusion_matrix(y_label, out_predict), file=log)  
+#         print("-"*30, file=log)
+# #         print("Classification Report")
+# #         print(classification_report(y_label,out_predict))
         
-        print("List of classification Accuracy", file=log)
-        data = Counter(y_label[y_label==out_predict])
-        stat = data.most_common()
-        stat = np.array(stat)
-        print(stat, file=log) 
-        s=model.score(features[test, :], labels[test])
-        print(i,"/",K,"The score for this classification is: ", s, file = log)
-        scores.append(s)
-    return np.mean(scores), np.std(scores)
-    '''
+#         print("List of classification Accuracy", file=log)
+#         data = Counter(y_label[y_label==out_predict])
+#         stat = data.most_common()
+#         stat = np.array(stat)
+#         print(stat, file=log) 
+#         s=model.score(features[test, :], labels[test])
+#         print(i,"/",K,"The score for this classification is: ", s, file = log)
+#         scores.append(s)
+#     return np.mean(scores), np.std(scores)
+#     '''
 
 def fit_features_to_SVM(log, class_names, features, labels, train_batch_size,  K=3  ):
 
@@ -659,7 +659,7 @@ for data_dir in ImageDirectory:
 
     # training the model
     #print("model  is", vgg16)
-    vgg16 = train_model(vgg16, criterion, optimizer_ft, exp_lr_scheduler, dataloaders, num_epochs=Epochs, K=k)
+    vgg16 = train_model(vgg16, criterion, optimizer_ft, exp_lr_scheduler, dataloaders, num_epochs=Epochs, K_splits=k)
     
     # Testing the model
     print("Testing the trained model", file = log)
@@ -684,7 +684,7 @@ for data_dir in ImageDirectory:
 
     # training the model
     #print("model  is", vgg16)
-    resnet34 = train_model(resnet34, criterion, optimizer_ft, exp_lr_scheduler, dataloaders, num_epochs=Epochs, K=k)
+    resnet34 = train_model(resnet34, criterion, optimizer_ft, exp_lr_scheduler, dataloaders, num_epochs=Epochs, K_splits=k)
     
     # Testing the model
     print("Testing the trained model", file = log)
@@ -725,7 +725,7 @@ for data_dir in ImageDirectory:
     vgg16 = train_model(vgg16, 
                         criterion, optimizer_ft, 
                         exp_lr_scheduler, dataloaders,
-                        num_epochs=Epochs, label_smoothing = True, K=k)
+                        num_epochs=Epochs, label_smoothing = True, K_splits=k)
     
     # Testing the model
     print("Testing the trained model", file = log)
@@ -752,7 +752,7 @@ for data_dir in ImageDirectory:
     resnet34 = train_model(resnet34, 
                         criterion, optimizer_ft, 
                         exp_lr_scheduler, dataloaders,
-                        num_epochs=Epochs, label_smoothing = True, K=k)
+                        num_epochs=Epochs, label_smoothing = True, K_splits=k)
     
     # Testing the model
     print("Testing the trained model", file = log)
