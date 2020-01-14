@@ -176,9 +176,8 @@ def get_features(ipnet, train_batches = 10, number_of_classes = 10):
             break
 
         inputs, labels = data
-        if(labels.numpy() not in selected_classes): 
-            continue
-        
+        #if(labels.numpy() not in selected_classes):
+        #    continue
         if use_gpu:
             inputs, labels = Variable(inputs.cuda()), Variable(labels.cuda())
         else:
