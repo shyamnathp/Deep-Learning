@@ -286,77 +286,77 @@ def fit_features_to_SVM(log, class_names, features, labels, train_batch_size,  K
 # In[ ]:
 
 
-data_dir_10 = "/home/student/blastoise/class10"  
-data_dir_30 = "/home/student/blastoise/class30"
-data_dir_100 = "/home/student/blastoise/ImgClas"
-ImageDirectory = [data_dir_10,data_dir_30,data_dir_100]
+# data_dir_10 = "/home/student/blastoise/class10"  
+# data_dir_30 = "/home/student/blastoise/class30"
+# data_dir_100 = "/home/student/blastoise/ImgClas"
+# ImageDirectory = [data_dir_10,data_dir_30,data_dir_100]
 
-TRAIN = 'train'
-TEST = 'test'
-log = open("Task1_final_ALL.txt", "w")
-# Set up the network
-print("VGG16 RESULTS\n", file=log)
-vgg16_nc = set_up_network('vgg16', freeze_training = True)
-if use_gpu:
-    vgg16_nc.cuda() #.cuda() will move everything to the GPU side
+# TRAIN = 'train'
+# TEST = 'test'
+# log = open("Task1_final_ALL.txt", "w")
+# # Set up the network
+# print("VGG16 RESULTS\n", file=log)
+# vgg16_nc = set_up_network('vgg16', freeze_training = True)
+# if use_gpu:
+#     vgg16_nc.cuda() #.cuda() will move everything to the GPU side
 
-K=3
-for data_dir in ImageDirectory:
+# K=3
+# for data_dir in ImageDirectory:
     
-    # Get Data
-    dataloaders, image_datasets = data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 1 )
-    dataset_sizes, classification_size,class_names = update_details(image_datasets)
+#     # Get Data
+#     dataloaders, image_datasets = data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 1 )
+#     dataset_sizes, classification_size,class_names = update_details(image_datasets)
     
-    # Update train_batch_size
-    train_batch_size = dataset_sizes[TRAIN]
-#     train_batch_size = 10
-    class_size = classification_size
+#     # Update train_batch_size
+#     train_batch_size = dataset_sizes[TRAIN]
+# #     train_batch_size = 10
+#     class_size = classification_size
     
-    # Get the image features for the imagenet trained network.
-    imgfeatures_vgg, imglabels_vgg = get_features(vgg16_nc, train_batch_size, number_of_classes = class_size)
-    file = log
-    mean_accuracy, sd = fit_features_to_SVM(file, class_names, imgfeatures_vgg,
-                                        imglabels_vgg, train_batch_size, K=K)
-    mean_accuracy_of_5_splits+=mean_accuracy
-    print("The mean and standard deviation of classification for vgg 16 is: ",
-      mean_accuracy, sd, "for class size: ", class_size, file = log)
-    del dataloaders, image_datasets, imgfeatures_vgg, imglabels_vgg
-    K = K-1
-del vgg16_nc
-print("Average Classification accuracy over 5 splits for vgg16 : " + str(mean_accuracy_of_5_splits/5.0))
-#log.close()
+#     # Get the image features for the imagenet trained network.
+#     imgfeatures_vgg, imglabels_vgg = get_features(vgg16_nc, train_batch_size, number_of_classes = class_size)
+#     file = log
+#     mean_accuracy, sd = fit_features_to_SVM(file, class_names, imgfeatures_vgg,
+#                                         imglabels_vgg, train_batch_size, K=K)
+#     mean_accuracy_of_5_splits+=mean_accuracy
+#     print("The mean and standard deviation of classification for vgg 16 is: ",
+#       mean_accuracy, sd, "for class size: ", class_size, file = log)
+#     del dataloaders, image_datasets, imgfeatures_vgg, imglabels_vgg
+#     K = K-1
+# del vgg16_nc
+# print("Average Classification accuracy over 5 splits for vgg16 : " + str(mean_accuracy_of_5_splits/5.0))
+# #log.close()
 
-print("\nRESNET34 RESULTS\n", file=log)
-mean_accuracy_of_5_splits=0.0
-resnet34_nc = set_up_network('resnet34', freeze_training = True)
-if use_gpu:
-    resnet34_nc.to(torch.device("cuda")) #.cuda() will move everything to the GPU side
+# print("\nRESNET34 RESULTS\n", file=log)
+# mean_accuracy_of_5_splits=0.0
+# resnet34_nc = set_up_network('resnet34', freeze_training = True)
+# if use_gpu:
+#     resnet34_nc.to(torch.device("cuda")) #.cuda() will move everything to the GPU side
 
-K=3
-for data_dir in ImageDirectory:
+# K=3
+# for data_dir in ImageDirectory:
     
-    # Get Data
-    dataloaders, image_datasets = data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 1 )
-    dataset_sizes, classification_size,class_names = update_details(image_datasets)
+#     # Get Data
+#     dataloaders, image_datasets = data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 1 )
+#     dataset_sizes, classification_size,class_names = update_details(image_datasets)
     
-    # Update train_batch_size
-    train_batch_size = dataset_sizes[TRAIN]
-#     train_batch_size = 10
-    class_size = classification_size
+#     # Update train_batch_size
+#     train_batch_size = dataset_sizes[TRAIN]
+# #     train_batch_size = 10
+#     class_size = classification_size
     
-    # Get the image features for the imagenet trained network.
-    imgfeatures_vgg, imglabels_vgg = get_features(resnet34_nc, train_batch_size, number_of_classes = class_size)
-    file = log
-    mean_accuracy, sd = fit_features_to_SVM(file, class_names, imgfeatures_vgg,
-                                        imglabels_vgg, train_batch_size, K=K)
-    mean_accuracy_of_5_splits+=mean_accuracy
-    print("The mean and standard deviation of classification for vgg 16 is: ",
-      mean_accuracy, sd, "for class size: ", class_size, file = log)
-    del dataloaders, image_datasets, imgfeatures_vgg, imglabels_vgg
-    K = K-1
-del resnet34_nc
-print("Average Classification accuracy over 5 splits for vgg16 : " + str(mean_accuracy_of_5_splits/5.0))
-log.close()
+#     # Get the image features for the imagenet trained network.
+#     imgfeatures_vgg, imglabels_vgg = get_features(resnet34_nc, train_batch_size, number_of_classes = class_size)
+#     file = log
+#     mean_accuracy, sd = fit_features_to_SVM(file, class_names, imgfeatures_vgg,
+#                                         imglabels_vgg, train_batch_size, K=K)
+#     mean_accuracy_of_5_splits+=mean_accuracy
+#     print("The mean and standard deviation of classification for vgg 16 is: ",
+#       mean_accuracy, sd, "for class size: ", class_size, file = log)
+#     del dataloaders, image_datasets, imgfeatures_vgg, imglabels_vgg
+#     K = K-1
+# del resnet34_nc
+# print("Average Classification accuracy over 5 splits for vgg16 : " + str(mean_accuracy_of_5_splits/5.0))
+# log.close()
 
 
 
