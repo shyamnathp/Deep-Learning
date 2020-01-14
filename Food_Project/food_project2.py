@@ -68,7 +68,7 @@ def data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 
 
     dataloaders = {
         x: torch.utils.data.DataLoader(
-            image_datasets[x], batch_size=1,
+            image_datasets[x], batch_size=2,
             shuffle=True, num_workers=1
         )
         for x in [TRAIN, TEST]
@@ -110,12 +110,18 @@ def update_details(image_datasets):
 # Some utility function to visualize the dataset and the model's predictions
 
 # In[ ]:
-
+def num_flat_features(self, x):
+      size = x.size()[1:]  # all dimensions except the batch dimension
+      num_features = 1
+      for s in size:
+          num_features *= s
+      return num_features
 
 def set_up_network(net, freeze_training = True, clip_classifier = True, classification_size = 101):
     if net == 'vgg16':
     # Load the pretrained model from pytorch
         network = models.vgg16(pretrained=True)
+        #print(" original vgg16", network)
 
         # Freeze training for all layers
         # Newly created modules have require_grad=True by default
@@ -141,7 +147,7 @@ def set_up_network(net, freeze_training = True, clip_classifier = True, classifi
         features = list(network.classifier.children())[:-1] # Remove last layer
         features.extend([nn.Linear(num_features, classification_size)]) # Add our layer with 4 outputs
         network.classifier = nn.Sequential(*features) # Replace the model cla
-#     print(network)
+    #print("modified vgg16", network)
     return network
 
 # ## Task 1: Update Features
@@ -281,76 +287,77 @@ def fit_features_to_SVM(log, class_names, features, labels, train_batch_size,  K
 # In[ ]:
 
 
-# data_dir_10 = "/home/student/blastoise/class10"  
-# data_dir_30 = "/home/student/blastoise/class30"
-# data_dir_100 = "/home/student/blastoise/ImgClas"
-# ImageDirectory = [data_dir_10,data_dir_30,data_dir_100]
+data_dir_10 = "/home/student/blastoise/class10"  
+data_dir_30 = "/home/student/blastoise/class30"
+data_dir_100 = "/home/student/blastoise/ImgClas"
+ImageDirectory = [data_dir_10,data_dir_30,data_dir_100]
 
-# TRAIN = 'train'
-# TEST = 'test'
-# log = open("VGG16_Task1_final.txt", "w")
-# # Set up the network
-# vgg16_nc = set_up_network('vgg16', freeze_training = True)
-# if use_gpu:
-#     vgg16_nc.cuda() #.cuda() will move everything to the GPU side
+TRAIN = 'train'
+TEST = 'test'
+log = open("Task1_final_ALL.txt", "w")
+# Set up the network
+print("VGG16 RESULTS\n", file=log)
+vgg16_nc = set_up_network('vgg16', freeze_training = True)
+if use_gpu:
+    vgg16_nc.cuda() #.cuda() will move everything to the GPU side
 
-# K=3
-# for data_dir in ImageDirectory:
+K=3
+for data_dir in ImageDirectory:
     
-#     # Get Data
-#     dataloaders, image_datasets = data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 1 )
-#     dataset_sizes, classification_size,class_names = update_details(image_datasets)
+    # Get Data
+    dataloaders, image_datasets = data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 1 )
+    dataset_sizes, classification_size,class_names = update_details(image_datasets)
     
-#     # Update train_batch_size
-#     train_batch_size = dataset_sizes[TRAIN]
-# #     train_batch_size = 10
-#     class_size = classification_size
+    # Update train_batch_size
+    train_batch_size = dataset_sizes[TRAIN]
+#     train_batch_size = 10
+    class_size = classification_size
     
-#     # Get the image features for the imagenet trained network.
-#     imgfeatures_vgg, imglabels_vgg = get_features(vgg16_nc, train_batch_size, number_of_classes = class_size)
-#     file = log
-#     mean_accuracy, sd = fit_features_to_SVM(file, class_names, imgfeatures_vgg,
-#                                         imglabels_vgg, train_batch_size, K=K)
-#     mean_accuracy_of_5_splits+=mean_accuracy
-#     print("The mean and standard deviation of classification for vgg 16 is: ",
-#       mean_accuracy, sd, "for class size: ", class_size, file = log)
-#     del dataloaders, image_datasets, imgfeatures_vgg, imglabels_vgg
-#     K = K-1
-# del vgg16_nc
-# print("Average Classification accuracy over 5 splits for vgg16 : " + str(mean_accuracy_of_5_splits/5.0))
-# #log.close()
+    # Get the image features for the imagenet trained network.
+    imgfeatures_vgg, imglabels_vgg = get_features(vgg16_nc, train_batch_size, number_of_classes = class_size)
+    file = log
+    mean_accuracy, sd = fit_features_to_SVM(file, class_names, imgfeatures_vgg,
+                                        imglabels_vgg, train_batch_size, K=K)
+    mean_accuracy_of_5_splits+=mean_accuracy
+    print("The mean and standard deviation of classification for vgg 16 is: ",
+      mean_accuracy, sd, "for class size: ", class_size, file = log)
+    del dataloaders, image_datasets, imgfeatures_vgg, imglabels_vgg
+    K = K-1
+del vgg16_nc
+print("Average Classification accuracy over 5 splits for vgg16 : " + str(mean_accuracy_of_5_splits/5.0))
+#log.close()
 
-# print("\n RESNET34 RESULTS", file=log)
-# mean_accuracy_of_5_splits=0.0
-# resnet34_nc = set_up_network('resnet34', freeze_training = True)
-# if use_gpu:
-#     resnet34_nc.to(torch.device("cuda")) #.cuda() will move everything to the GPU side
+print("\nRESNET34 RESULTS\n", file=log)
+mean_accuracy_of_5_splits=0.0
+resnet34_nc = set_up_network('resnet34', freeze_training = True)
+if use_gpu:
+    resnet34_nc.to(torch.device("cuda")) #.cuda() will move everything to the GPU side
 
-# K=3
-# for data_dir in ImageDirectory:
+K=3
+for data_dir in ImageDirectory:
     
-#     # Get Data
-#     dataloaders, image_datasets = data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 1 )
-#     dataset_sizes, classification_size,class_names = update_details(image_datasets)
+    # Get Data
+    dataloaders, image_datasets = data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 1 )
+    dataset_sizes, classification_size,class_names = update_details(image_datasets)
     
-#     # Update train_batch_size
-#     train_batch_size = dataset_sizes[TRAIN]
-# #     train_batch_size = 10
-#     class_size = classification_size
+    # Update train_batch_size
+    train_batch_size = dataset_sizes[TRAIN]
+#     train_batch_size = 10
+    class_size = classification_size
     
-#     # Get the image features for the imagenet trained network.
-#     imgfeatures_vgg, imglabels_vgg = get_features(resnet34_nc, train_batch_size, number_of_classes = class_size)
-#     file = log
-#     mean_accuracy, sd = fit_features_to_SVM(file, class_names, imgfeatures_vgg,
-#                                         imglabels_vgg, train_batch_size, K=K)
-#     mean_accuracy_of_5_splits+=mean_accuracy
-#     print("The mean and standard deviation of classification for vgg 16 is: ",
-#       mean_accuracy, sd, "for class size: ", class_size, file = log)
-#     del dataloaders, image_datasets, imgfeatures_vgg, imglabels_vgg
-#     K = K-1
-# del resnet34_nc
-# print("Average Classification accuracy over 5 splits for vgg16 : " + str(mean_accuracy_of_5_splits/5.0))
-# log.close()
+    # Get the image features for the imagenet trained network.
+    imgfeatures_vgg, imglabels_vgg = get_features(resnet34_nc, train_batch_size, number_of_classes = class_size)
+    file = log
+    mean_accuracy, sd = fit_features_to_SVM(file, class_names, imgfeatures_vgg,
+                                        imglabels_vgg, train_batch_size, K=K)
+    mean_accuracy_of_5_splits+=mean_accuracy
+    print("The mean and standard deviation of classification for vgg 16 is: ",
+      mean_accuracy, sd, "for class size: ", class_size, file = log)
+    del dataloaders, image_datasets, imgfeatures_vgg, imglabels_vgg
+    K = K-1
+del resnet34_nc
+print("Average Classification accuracy over 5 splits for vgg16 : " + str(mean_accuracy_of_5_splits/5.0))
+log.close()
 
 
 
@@ -390,7 +397,7 @@ def cal_loss(pred, gold, smoothing = False):
 # In[ ]:
 
 
-def train_model(vgg, criterion, optimizer, scheduler, dataloaders, num_epochs=10, label_smoothing = False):
+def train_model(vgg, criterion, optimizer, scheduler, dataloaders, num_epochs=10, label_smoothing = False, K_splits=1):
     since = time.time()
     best_model_wts = copy.deepcopy(vgg.state_dict())
     best_acc = 0.0
@@ -399,7 +406,7 @@ def train_model(vgg, criterion, optimizer, scheduler, dataloaders, num_epochs=10
     avg_acc = 0
     avg_loss_val = 0
     avg_acc_val = 0
-    K = 3
+    K = K_splits
     train_batches = len(dataloaders[TRAIN])
     train_bat = np.ones((train_batches, 1)) # This is a dummy variable as sklearn changed stuff and didn't do it right.
     val_batches = 0.2*train_batches
@@ -421,6 +428,7 @@ def train_model(vgg, criterion, optimizer, scheduler, dataloaders, num_epochs=10
         for train, test in kf.split(train_bat):
         
             for i, data in enumerate(dataloaders[TRAIN]):
+                #print("i is ",i)
                 if i % 100 == 0:
                     print("\rTraining batch {}/{}".format(i, train_batches / 2), end='')
 
@@ -484,8 +492,9 @@ def train_model(vgg, criterion, optimizer, scheduler, dataloaders, num_epochs=10
                 optimizer.zero_grad()
 
                 outputs = vgg(inputs)
-
+                #print("out validation", outputs)
                 _, preds = torch.max(outputs.data, 1)
+                #print("preds validation",preds)
                 loss = criterion(outputs, labels)
 
 #                 loss_val += loss.data[0]
@@ -510,6 +519,7 @@ def train_model(vgg, criterion, optimizer, scheduler, dataloaders, num_epochs=10
             if avg_acc_val > best_acc:
                 best_acc = avg_acc_val
                 best_model_wts = copy.deepcopy(vgg.state_dict())
+            #break; #to remove
         
     elapsed_time = time.time() - since
     print(file = log)
@@ -525,6 +535,7 @@ def train_model(vgg, criterion, optimizer, scheduler, dataloaders, num_epochs=10
 # In[ ]:
 
 
+
 def eval_model(vgg, criterion, label_smoothing = False):
     since = time.time()
     avg_loss = 0
@@ -533,58 +544,73 @@ def eval_model(vgg, criterion, label_smoothing = False):
     acc_test = 0
     
     test_batches = len(dataloaders[TEST])
+    #print("test batches is ", test_batches)
     print("Evaluating model")
     print('-' * 10)
+    pred_total = []
+    out_total = []
     
     for i, data in enumerate(dataloaders[TEST]):
         if i % 100 == 0:
             print("\rTest batch {}/{}".format(i, test_batches), file=log)
-#         if i >= 1:
-#             break
+
         vgg.train(False)
         vgg.eval()
         inputs, labels = data
+        #print("inputs", inputs.size())
 
         if use_gpu:
             inputs, labels = Variable(inputs.cuda(), requires_grad=True), Variable(labels.cuda())
         else:
             inputs, labels = Variable(inputs, requires_grad=True), Variable(labels)
 
+        #print("inputs", inputs)
+        
         outputs = vgg(inputs)
-
+        #print("outputs", outputs)
         _, preds = torch.max(outputs.data, 1)
+        #print("preds", preds)
+        #print("labels", (labels.data).size())
         loss = criterion(outputs, labels, smoothing=label_smoothing)
 
-#         loss_test += loss.data[0]
         loss_test += loss.item()
 
         acc_test += torch.sum(preds == labels.data)
+        print("acc_test", acc_test)
 
-        pred_np = preds.cpu().clone().numpy()
-        output_np = labels.data.cpu().clone().numpy()
-        y_label = output_np.ravel()
-        out_predict = pred_np
+        pred_total.append(preds.unsqueeze(0))
+        out_total.append((labels.data).unsqueeze(0))
 
-        print("Confusion Matrix")
-        print(confusion_matrix(y_label, out_predict))  
-        print("-"*30)
-#         print("Classification Report")
-#         print(classification_report(y_label,out_predict))
-        
-        print("List of classification Accuracy")
-        data = Counter(y_label[y_label==out_predict])
-        stat = data.most_common()
-        stat = np.array(stat)
-        print(stat)   # Returns all unique items and their counts
-
-        print("hurray, it works")
+        #print("hurray, it works")
 
         del inputs, labels, outputs, preds
         torch.cuda.empty_cache()
-        
+
+    #print("pred_total count", pred_total) 
+    pred_tot_single = torch.cat(pred_total)
+    out_tot_single = torch.cat(out_total)
+
     avg_loss = loss_test / dataset_sizes[TEST]
     avg_acc = acc_test / dataset_sizes[TEST]
-    
+    #print("pred_total count", pred_tot_single) 
+
+    pred_np = pred_tot_single.cpu().clone().numpy()
+    output_np = out_tot_single.data.cpu().clone().numpy()
+    y_label = output_np.ravel()
+    out_predict = pred_np.ravel()
+
+    #print("y_label", y_label.shape)
+    #print("out_predict", out_predict.shape)
+
+    print("Confusion Matrix", file=log)
+    print(confusion_matrix(y_label, out_predict), file=log)  
+    print("-"*30, file=log)
+
+    print("List of classification Accuracy", file = log)
+    data = Counter(y_label[y_label==out_predict])
+    stat = data.most_common()
+    stat = np.array(stat)
+    print(stat,file=log)   # Returns all unique items and their counts
     elapsed_time = time.time() - since
     print(file = log)
     print("Evaluation completed in {:.0f}m {:.0f}s".format(elapsed_time // 60, elapsed_time % 60), file = log)
@@ -592,7 +618,7 @@ def eval_model(vgg, criterion, label_smoothing = False):
     print("Avg acc (test): {:.4f}".format(avg_acc), file = log)
     print('-' * 10, file = log)
 
-lr_=0.05
+lr_=0.0005
 momentum_=0.9
 def set_up_network_param(net_type ='vgg16', freeze_training = False, clip_classifier = False, classification_size=10):
     net = set_up_network(net_type, freeze_training = False, clip_classifier = False, classification_size=10)
@@ -612,13 +638,15 @@ def set_up_network_param(net_type ='vgg16', freeze_training = False, clip_classi
 data_dir_10 = "/home/student/blastoise/class10"  
 data_dir_30 = "/home/student/blastoise/class30"
 data_dir_100 = "/home/student/blastoise/ImgClas"
-ImageDirectory = [data_dir_10, data_dir_30, data_dir_100]
+ImageDirectory = [data_dir_10,data_dir_30,data_dir_100]
 
 TRAIN = 'train'
 TEST = 'test'
 
 Epochs = 2
-log = open("VGG16_Task2_final.txt", "w")
+log = open("Task2_final_all.txt", "w")
+print("\nVGG16 RESULTS\n", file=log)
+k=3
 for data_dir in ImageDirectory:
     # Get Data
     dataloaders, image_datasets = data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 10 )
@@ -631,15 +659,41 @@ for data_dir in ImageDirectory:
                          classification_size=classification_size)
 
     # training the model
-    vgg16 = train_model(vgg16, criterion, optimizer_ft, exp_lr_scheduler, dataloaders, num_epochs=Epochs)
+    #print("model  is", vgg16)
+    vgg16 = train_model(vgg16, criterion, optimizer_ft, exp_lr_scheduler, dataloaders, num_epochs=Epochs, K=k)
     
     # Testing the model
     print("Testing the trained model", file = log)
     eval_model(vgg16, criterion)
-    
+    k=k-1
     # Save the trained Model
     torch.save(vgg16.state_dict(), "VGG16_v1_task2_size_"+str(classification_size)+".pt")
     del vgg16, criterion, optimizer_ft, exp_lr_scheduler, dataloaders, image_datasets
+
+print("\nRESNET RESULTS\n", file=log)
+k=3
+for data_dir in ImageDirectory:
+    # Get Data
+    dataloaders, image_datasets = data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 10 )
+    dataset_sizes, classification_size, class_names = update_details(image_datasets)
+    
+    # Set up the network
+    resnet34, criterion, optimizer_ft, exp_lr_scheduler = set_up_network_param('resnet34', 
+                         freeze_training = False, 
+                         clip_classifier = False, 
+                         classification_size=classification_size)
+
+    # training the model
+    #print("model  is", vgg16)
+    resnet34 = train_model(resnet34, criterion, optimizer_ft, exp_lr_scheduler, dataloaders, num_epochs=Epochs, K=k)
+    
+    # Testing the model
+    print("Testing the trained model", file = log)
+    eval_model(resnet34, criterion)
+    k=k-1
+    # Save the trained Model
+    torch.save(resnet34.state_dict(), "RESNET_v1_task2_size_"+str(classification_size)+".pt")
+    del resnet34, criterion, optimizer_ft, exp_lr_scheduler, dataloaders, image_datasets
 log.close()
 
 
@@ -654,7 +708,9 @@ log.close()
 
 
 Epochs = 2
-log = open("VGG16_Task3.txt", "w")
+log = open("Task3_ALL.txt", "w")
+print("\nVGG16_RESULTS\n", file=log)
+k=3
 for data_dir in ImageDirectory:
     # Get Data
     dataloaders, image_datasets = data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 10 )
@@ -670,13 +726,40 @@ for data_dir in ImageDirectory:
     vgg16 = train_model(vgg16, 
                         criterion, optimizer_ft, 
                         exp_lr_scheduler, dataloaders,
-                        num_epochs=Epochs, label_smoothing = True)
+                        num_epochs=Epochs, label_smoothing = True, K=k)
     
     # Testing the model
     print("Testing the trained model", file = log)
     eval_model(vgg16, criterion, label_smoothing = True)
-    
+    k=k-1
     # Save the trained Model
     torch.save(vgg16.state_dict(), "VGG16_v1_task3_size_"+str(classification_size)+".pt")
     del vgg16, criterion, optimizer_ft, exp_lr_scheduler, dataloaders, image_datasets
+
+print("\nRESNET34_RESULTS\n", file=log)
+k=3
+for data_dir in ImageDirectory:
+    # Get Data
+    dataloaders, image_datasets = data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 10 )
+    dataset_sizes, classification_size, class_names = update_details(image_datasets)
+    
+    # Set up the network
+    resnet34, criterion, optimizer_ft, exp_lr_scheduler = set_up_network_param('resnet34', 
+                         freeze_training = False, 
+                         clip_classifier = False, 
+                         classification_size=classification_size)
+
+    # training the model
+    resnet34 = train_model(resnet34, 
+                        criterion, optimizer_ft, 
+                        exp_lr_scheduler, dataloaders,
+                        num_epochs=Epochs, label_smoothing = True, K=k)
+    
+    # Testing the model
+    print("Testing the trained model", file = log)
+    eval_model(resnet34, criterion, label_smoothing = True)
+    k=k-1
+    # Save the trained Model
+    torch.save(vgg16.state_dict(), "RESNET34_v1_task3_size_"+str(classification_size)+".pt")
+    del resnet34, criterion, optimizer_ft, exp_lr_scheduler, dataloaders, image_datasets
 log.close()
