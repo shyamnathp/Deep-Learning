@@ -6,313 +6,193 @@ Loaded 2500 images under test
 Classes: 
 ['baby_back_ribs', 'baklava', 'beef_carpaccio', 'beef_tartare', 'beet_salad', 'beignets', 'bibimbap', 'bread_pudding', 'breakfast_burrito', 'bruschetta']
 Epoch 0/2
-Validation batch 0/750.0
-Validation batch 100/750.0
-Validation batch 200/750.0
-Validation batch 300/750.0
-Validation batch 400/750.0
-Validation batch 500/750.0
-Validation batch 600/750.0
-Validation batch 700/750.0
-Validation batch 800/750.0
-Validation batch 900/750.0
-Validation batch 1000/750.0
-Validation batch 1100/750.0
-Validation batch 1200/750.0
-Validation batch 1300/750.0
-Validation batch 1400/750.0
-Validation batch 1500/750.0
-Validation batch 1600/750.0
-Validation batch 1700/750.0
-Validation batch 1800/750.0
-Validation batch 1900/750.0
-Validation batch 2000/750.0
-Validation batch 2100/750.0
-Validation batch 2200/750.0
-Validation batch 2300/750.0
-Validation batch 2400/750.0
-Validation batch 2500/750.0
-Validation batch 2600/750.0
-Validation batch 2700/750.0
-Validation batch 2800/750.0
-Validation batch 2900/750.0
-Validation batch 3000/750.0
-Validation batch 3100/750.0
-Validation batch 3200/750.0
-Validation batch 3300/750.0
-Validation batch 3400/750.0
-Validation batch 3500/750.0
-Validation batch 3600/750.0
-Validation batch 3700/750.0
+Validation batch 0/375.0
+Validation batch 100/375.0
+Validation batch 200/375.0
+Validation batch 300/375.0
+Validation batch 400/375.0
+Validation batch 500/375.0
+Validation batch 600/375.0
+Validation batch 700/375.0
+Validation batch 800/375.0
+Validation batch 900/375.0
+Validation batch 1000/375.0
+Validation batch 1100/375.0
+Validation batch 1200/375.0
+Validation batch 1300/375.0
+Validation batch 1400/375.0
+Validation batch 1500/375.0
+Validation batch 1600/375.0
+Validation batch 1700/375.0
+Validation batch 1800/375.0
 
 Epoch 0 result: 
-Avg loss (train): 0.4245
-Avg acc (train): 0.0810
+Avg loss (train): 0.1813
+Avg acc (train): 0.1370
 Avg loss (val): 0.0000
-Avg acc (val): 0.6000
-Validation batch 0/750.0
-Validation batch 100/750.0
-Validation batch 200/750.0
-Validation batch 300/750.0
-Validation batch 400/750.0
-Validation batch 500/750.0
-Validation batch 600/750.0
-Validation batch 700/750.0
-Validation batch 800/750.0
-Validation batch 900/750.0
-Validation batch 1000/750.0
-Validation batch 1100/750.0
-Validation batch 1200/750.0
-Validation batch 1300/750.0
-Validation batch 1400/750.0
-Validation batch 1500/750.0
-Validation batch 1600/750.0
-Validation batch 1700/750.0
-Validation batch 1800/750.0
-Validation batch 1900/750.0
-Validation batch 2000/750.0
-Validation batch 2100/750.0
-Validation batch 2200/750.0
-Validation batch 2300/750.0
-Validation batch 2400/750.0
-Validation batch 2500/750.0
-Validation batch 2600/750.0
-Validation batch 2700/750.0
-Validation batch 2800/750.0
-Validation batch 2900/750.0
-Validation batch 3000/750.0
-Validation batch 3100/750.0
-Validation batch 3200/750.0
-Validation batch 3300/750.0
-Validation batch 3400/750.0
-Validation batch 3500/750.0
-Validation batch 3600/750.0
-Validation batch 3700/750.0
+Avg acc (val): 0.6880
+Validation batch 0/375.0
+Validation batch 100/375.0
+Validation batch 200/375.0
+Validation batch 300/375.0
+Validation batch 400/375.0
+Validation batch 500/375.0
+Validation batch 600/375.0
+Validation batch 700/375.0
+Validation batch 800/375.0
+Validation batch 900/375.0
+Validation batch 1000/375.0
+Validation batch 1100/375.0
+Validation batch 1200/375.0
+Validation batch 1300/375.0
+Validation batch 1400/375.0
+Validation batch 1500/375.0
+Validation batch 1600/375.0
+Validation batch 1700/375.0
+Validation batch 1800/375.0
 
 Epoch 0 result: 
-Avg loss (train): 1.7056
-Avg acc (train): 0.4507
+Avg loss (train): 0.7391
+Avg acc (train): 0.5710
 Avg loss (val): 0.0000
-Avg acc (val): 1.3500
-Validation batch 0/750.0
-Validation batch 100/750.0
-Validation batch 200/750.0
-Validation batch 300/750.0
-Validation batch 400/750.0
-Validation batch 500/750.0
-Validation batch 600/750.0
-Validation batch 700/750.0
-Validation batch 800/750.0
-Validation batch 900/750.0
-Validation batch 1000/750.0
-Validation batch 1100/750.0
-Validation batch 1200/750.0
-Validation batch 1300/750.0
-Validation batch 1400/750.0
-Validation batch 1500/750.0
-Validation batch 1600/750.0
-Validation batch 1700/750.0
-Validation batch 1800/750.0
-Validation batch 1900/750.0
-Validation batch 2000/750.0
-Validation batch 2100/750.0
-Validation batch 2200/750.0
-Validation batch 2300/750.0
-Validation batch 2400/750.0
-Validation batch 2500/750.0
-Validation batch 2600/750.0
-Validation batch 2700/750.0
-Validation batch 2800/750.0
-Validation batch 2900/750.0
-Validation batch 3000/750.0
-Validation batch 3100/750.0
-Validation batch 3200/750.0
-Validation batch 3300/750.0
-Validation batch 3400/750.0
-Validation batch 3500/750.0
-Validation batch 3600/750.0
-Validation batch 3700/750.0
+Avg acc (val): 1.5847
+Validation batch 0/375.0
+Validation batch 100/375.0
+Validation batch 200/375.0
+Validation batch 300/375.0
+Validation batch 400/375.0
+Validation batch 500/375.0
+Validation batch 600/375.0
+Validation batch 700/375.0
+Validation batch 800/375.0
+Validation batch 900/375.0
+Validation batch 1000/375.0
+Validation batch 1100/375.0
+Validation batch 1200/375.0
+Validation batch 1300/375.0
+Validation batch 1400/375.0
+Validation batch 1500/375.0
+Validation batch 1600/375.0
+Validation batch 1700/375.0
+Validation batch 1800/375.0
 
 Epoch 0 result: 
-Avg loss (train): 3.0749
-Avg acc (train): 1.1070
+Avg loss (train): 1.2912
+Avg acc (train): 1.3063
 Avg loss (val): 0.0000
-Avg acc (val): 2.3160
+Avg acc (val): 2.5407
 Epoch 1/2
-Validation batch 0/750.0
-Validation batch 100/750.0
-Validation batch 200/750.0
-Validation batch 300/750.0
-Validation batch 400/750.0
-Validation batch 500/750.0
-Validation batch 600/750.0
-Validation batch 700/750.0
-Validation batch 800/750.0
-Validation batch 900/750.0
-Validation batch 1000/750.0
-Validation batch 1100/750.0
-Validation batch 1200/750.0
-Validation batch 1300/750.0
-Validation batch 1400/750.0
-Validation batch 1500/750.0
-Validation batch 1600/750.0
-Validation batch 1700/750.0
-Validation batch 1800/750.0
-Validation batch 1900/750.0
-Validation batch 2000/750.0
-Validation batch 2100/750.0
-Validation batch 2200/750.0
-Validation batch 2300/750.0
-Validation batch 2400/750.0
-Validation batch 2500/750.0
-Validation batch 2600/750.0
-Validation batch 2700/750.0
-Validation batch 2800/750.0
-Validation batch 2900/750.0
-Validation batch 3000/750.0
-Validation batch 3100/750.0
-Validation batch 3200/750.0
-Validation batch 3300/750.0
-Validation batch 3400/750.0
-Validation batch 3500/750.0
-Validation batch 3600/750.0
-Validation batch 3700/750.0
+Validation batch 0/375.0
+Validation batch 100/375.0
+Validation batch 200/375.0
+Validation batch 300/375.0
+Validation batch 400/375.0
+Validation batch 500/375.0
+Validation batch 600/375.0
+Validation batch 700/375.0
+Validation batch 800/375.0
+Validation batch 900/375.0
+Validation batch 1000/375.0
+Validation batch 1100/375.0
+Validation batch 1200/375.0
+Validation batch 1300/375.0
+Validation batch 1400/375.0
+Validation batch 1500/375.0
+Validation batch 1600/375.0
+Validation batch 1700/375.0
+Validation batch 1800/375.0
 
 Epoch 1 result: 
-Avg loss (train): 0.2570
-Avg acc (train): 0.2193
+Avg loss (train): 0.1016
+Avg acc (train): 0.2490
 Avg loss (val): 0.0000
-Avg acc (val): 1.0520
-Validation batch 0/750.0
-Validation batch 100/750.0
-Validation batch 200/750.0
-Validation batch 300/750.0
-Validation batch 400/750.0
-Validation batch 500/750.0
-Validation batch 600/750.0
-Validation batch 700/750.0
-Validation batch 800/750.0
-Validation batch 900/750.0
-Validation batch 1000/750.0
-Validation batch 1100/750.0
-Validation batch 1200/750.0
-Validation batch 1300/750.0
-Validation batch 1400/750.0
-Validation batch 1500/750.0
-Validation batch 1600/750.0
-Validation batch 1700/750.0
-Validation batch 1800/750.0
-Validation batch 1900/750.0
-Validation batch 2000/750.0
-Validation batch 2100/750.0
-Validation batch 2200/750.0
-Validation batch 2300/750.0
-Validation batch 2400/750.0
-Validation batch 2500/750.0
-Validation batch 2600/750.0
-Validation batch 2700/750.0
-Validation batch 2800/750.0
-Validation batch 2900/750.0
-Validation batch 3000/750.0
-Validation batch 3100/750.0
-Validation batch 3200/750.0
-Validation batch 3300/750.0
-Validation batch 3400/750.0
-Validation batch 3500/750.0
-Validation batch 3600/750.0
-Validation batch 3700/750.0
+Avg acc (val): 1.0633
+Validation batch 0/375.0
+Validation batch 100/375.0
+Validation batch 200/375.0
+Validation batch 300/375.0
+Validation batch 400/375.0
+Validation batch 500/375.0
+Validation batch 600/375.0
+Validation batch 700/375.0
+Validation batch 800/375.0
+Validation batch 900/375.0
+Validation batch 1000/375.0
+Validation batch 1100/375.0
+Validation batch 1200/375.0
+Validation batch 1300/375.0
+Validation batch 1400/375.0
+Validation batch 1500/375.0
+Validation batch 1600/375.0
+Validation batch 1700/375.0
+Validation batch 1800/375.0
 
 Epoch 1 result: 
-Avg loss (train): 1.0477
-Avg acc (train): 0.7040
+Avg loss (train): 0.4546
+Avg acc (train): 0.7930
 Avg loss (val): 0.0000
-Avg acc (val): 2.0560
-Validation batch 0/750.0
-Validation batch 100/750.0
-Validation batch 200/750.0
-Validation batch 300/750.0
-Validation batch 400/750.0
-Validation batch 500/750.0
-Validation batch 600/750.0
-Validation batch 700/750.0
-Validation batch 800/750.0
-Validation batch 900/750.0
-Validation batch 1000/750.0
-Validation batch 1100/750.0
-Validation batch 1200/750.0
-Validation batch 1300/750.0
-Validation batch 1400/750.0
-Validation batch 1500/750.0
-Validation batch 1600/750.0
-Validation batch 1700/750.0
-Validation batch 1800/750.0
-Validation batch 1900/750.0
-Validation batch 2000/750.0
-Validation batch 2100/750.0
-Validation batch 2200/750.0
-Validation batch 2300/750.0
-Validation batch 2400/750.0
-Validation batch 2500/750.0
-Validation batch 2600/750.0
-Validation batch 2700/750.0
-Validation batch 2800/750.0
-Validation batch 2900/750.0
-Validation batch 3000/750.0
-Validation batch 3100/750.0
-Validation batch 3200/750.0
-Validation batch 3300/750.0
-Validation batch 3400/750.0
-Validation batch 3500/750.0
-Validation batch 3600/750.0
-Validation batch 3700/750.0
+Avg acc (val): 2.1380
+Validation batch 0/375.0
+Validation batch 100/375.0
+Validation batch 200/375.0
+Validation batch 300/375.0
+Validation batch 400/375.0
+Validation batch 500/375.0
+Validation batch 600/375.0
+Validation batch 700/375.0
+Validation batch 800/375.0
+Validation batch 900/375.0
+Validation batch 1000/375.0
+Validation batch 1100/375.0
+Validation batch 1200/375.0
+Validation batch 1300/375.0
+Validation batch 1400/375.0
+Validation batch 1500/375.0
+Validation batch 1600/375.0
+Validation batch 1700/375.0
+Validation batch 1800/375.0
 
 Epoch 1 result: 
-Avg loss (train): 2.0524
-Avg acc (train): 1.4573
+Avg loss (train): 0.8747
+Avg acc (train): 1.6183
 Avg loss (val): 0.0000
-Avg acc (val): 3.1580
+Avg acc (val): 3.2240
 
-Training completed in 16m 12s
-Best acc: 3.1580
+Training completed in 9m 43s
+Best acc: 3.2240
 Testing the trained model
-Test batch 0/1250
-Test batch 100/1250
-Test batch 200/1250
-Test batch 300/1250
-Test batch 400/1250
-Test batch 500/1250
-Test batch 600/1250
-Test batch 700/1250
-Test batch 800/1250
-Test batch 900/1250
-Test batch 1000/1250
-Test batch 1100/1250
-Test batch 1200/1250
+Test batch 0/625
+Test batch 100/625
+Test batch 200/625
+Test batch 300/625
+Test batch 400/625
+Test batch 500/625
+Test batch 600/625
 Confusion Matrix
-[[  0  24   2  26   9   0   9 161   1  18]
- [  0 239   0   1   0   2   0   7   0   1]
- [  0   2 206  14   9   0   0   3   0  16]
- [  0   6   4 225   3   0   2   4   0   6]
- [  0   3  10   6 203   1   3   9   2  13]
- [  0   3   0   0   0 236   0   9   0   2]
- [  0   1   0   1   2   0 238   3   0   5]
- [  0  35   0   2   0   9   1 202   0   1]
- [  0  44   2   2   1   4   5  26 131  35]
- [  0   5   5  10   2   0   0   4   3 221]]
+[[  0  47   0  35   0   1  24  78  53  12]
+ [  0 229   0   2   0   5   0   9   3   2]
+ [  0   3 158  23   5   0   1   0   4  56]
+ [  0   3   4 212   3   0   3   2   4  19]
+ [  0   2  11  12 151   0   7   8   9  50]
+ [  0   3   0   0   0 229   0   5  10   3]
+ [  0   1   0   3   0   0 235   0   8   3]
+ [  0  23   0   2   1   5   2 193  19   5]
+ [  0  13   0   0   0   2   1   6 211  17]
+ [  0   2   1  16   0   0   2   1  17 211]]
 ------------------------------
 List of classification Accuracy
-[[  1 239]
- [  6 238]
- [  5 236]
- [  3 225]
- [  9 221]
- [  2 206]
- [  4 203]
- [  7 202]
- [  8 131]]
+[[  6 235]
+ [  1 229]
+ [  5 229]
+ [  3 212]
+ [  8 211]
+ [  9 211]
+ [  7 193]
+ [  2 158]
+ [  4 151]]
 
-Evaluation completed in 3m 51s
-Avg loss (test): 0.2575
+Evaluation completed in 0m 18s
+Avg loss (test): 0.1353
 Avg acc (test): 0.0000
 ----------
 Loaded 22500 images under train
@@ -320,4 +200,376 @@ Loaded 7500 images under test
 Classes: 
 ['apple_pie', 'baby_back_ribs', 'baklava', 'beef_carpaccio', 'beef_tartare', 'beet_salad', 'beignets', 'bibimbap', 'bread_pudding', 'breakfast_burrito', 'bruschetta', 'caesar_salad', 'cannoli', 'caprese_salad', 'carrot_cake', 'ceviche', 'cheese_plate', 'cheesecake', 'chicken_curry', 'chicken_quesadilla', 'chicken_wings', 'chocolate_cake', 'chocolate_mousse', 'churros', 'clam_chowder', 'club_sandwich', 'crab_cakes', 'creme_brulee', 'croque_madame', 'cup_cakes']
 Epoch 0/2
-Validation batch 0/2250.0
+Validation batch 0/1125.0
+Validation batch 100/1125.0
+Validation batch 200/1125.0
+Validation batch 300/1125.0
+Validation batch 400/1125.0
+Validation batch 500/1125.0
+Validation batch 600/1125.0
+Validation batch 700/1125.0
+Validation batch 800/1125.0
+Validation batch 900/1125.0
+Validation batch 1000/1125.0
+Validation batch 1100/1125.0
+Validation batch 1200/1125.0
+Validation batch 1300/1125.0
+Validation batch 1400/1125.0
+Validation batch 1500/1125.0
+Validation batch 1600/1125.0
+Validation batch 1700/1125.0
+Validation batch 1800/1125.0
+Validation batch 1900/1125.0
+Validation batch 2000/1125.0
+Validation batch 2100/1125.0
+Validation batch 2200/1125.0
+Validation batch 2300/1125.0
+Validation batch 2400/1125.0
+Validation batch 2500/1125.0
+Validation batch 2600/1125.0
+Validation batch 2700/1125.0
+Validation batch 2800/1125.0
+Validation batch 2900/1125.0
+Validation batch 3000/1125.0
+Validation batch 3100/1125.0
+Validation batch 3200/1125.0
+Validation batch 3300/1125.0
+Validation batch 3400/1125.0
+Validation batch 3500/1125.0
+Validation batch 3600/1125.0
+Validation batch 3700/1125.0
+Validation batch 3800/1125.0
+Validation batch 3900/1125.0
+Validation batch 4000/1125.0
+Validation batch 4100/1125.0
+Validation batch 4200/1125.0
+Validation batch 4300/1125.0
+Validation batch 4400/1125.0
+Validation batch 4500/1125.0
+Validation batch 4600/1125.0
+Validation batch 4700/1125.0
+Validation batch 4800/1125.0
+Validation batch 4900/1125.0
+Validation batch 5000/1125.0
+Validation batch 5100/1125.0
+Validation batch 5200/1125.0
+Validation batch 5300/1125.0
+Validation batch 5400/1125.0
+Validation batch 5500/1125.0
+Validation batch 5600/1125.0
+
+Epoch 0 result: 
+Avg loss (train): 0.0000
+Avg acc (train): 0.0000
+Avg loss (val): 0.0000
+Avg acc (val): 0.1113
+Validation batch 0/1125.0
+Validation batch 100/1125.0
+Validation batch 200/1125.0
+Validation batch 300/1125.0
+Validation batch 400/1125.0
+Validation batch 500/1125.0
+Validation batch 600/1125.0
+Validation batch 700/1125.0
+Validation batch 800/1125.0
+Validation batch 900/1125.0
+Validation batch 1000/1125.0
+Validation batch 1100/1125.0
+Validation batch 1200/1125.0
+Validation batch 1300/1125.0
+Validation batch 1400/1125.0
+Validation batch 1500/1125.0
+Validation batch 1600/1125.0
+Validation batch 1700/1125.0
+Validation batch 1800/1125.0
+Validation batch 1900/1125.0
+Validation batch 2000/1125.0
+Validation batch 2100/1125.0
+Validation batch 2200/1125.0
+Validation batch 2300/1125.0
+Validation batch 2400/1125.0
+Validation batch 2500/1125.0
+Validation batch 2600/1125.0
+Validation batch 2700/1125.0
+Validation batch 2800/1125.0
+Validation batch 2900/1125.0
+Validation batch 3000/1125.0
+Validation batch 3100/1125.0
+Validation batch 3200/1125.0
+Validation batch 3300/1125.0
+Validation batch 3400/1125.0
+Validation batch 3500/1125.0
+Validation batch 3600/1125.0
+Validation batch 3700/1125.0
+Validation batch 3800/1125.0
+Validation batch 3900/1125.0
+Validation batch 4000/1125.0
+Validation batch 4100/1125.0
+Validation batch 4200/1125.0
+Validation batch 4300/1125.0
+Validation batch 4400/1125.0
+Validation batch 4500/1125.0
+Validation batch 4600/1125.0
+Validation batch 4700/1125.0
+Validation batch 4800/1125.0
+Validation batch 4900/1125.0
+Validation batch 5000/1125.0
+Validation batch 5100/1125.0
+Validation batch 5200/1125.0
+Validation batch 5300/1125.0
+Validation batch 5400/1125.0
+Validation batch 5500/1125.0
+Validation batch 5600/1125.0
+
+Epoch 0 result: 
+Avg loss (train): 1.6969
+Avg acc (train): 0.5106
+Avg loss (val): 0.0000
+Avg acc (val): 1.4436
+Epoch 1/2
+Validation batch 0/1125.0
+Validation batch 100/1125.0
+Validation batch 200/1125.0
+Validation batch 300/1125.0
+Validation batch 400/1125.0
+Validation batch 500/1125.0
+Validation batch 600/1125.0
+Validation batch 700/1125.0
+Validation batch 800/1125.0
+Validation batch 900/1125.0
+Validation batch 1000/1125.0
+Validation batch 1100/1125.0
+Validation batch 1200/1125.0
+Validation batch 1300/1125.0
+Validation batch 1400/1125.0
+Validation batch 1500/1125.0
+Validation batch 1600/1125.0
+Validation batch 1700/1125.0
+Validation batch 1800/1125.0
+Validation batch 1900/1125.0
+Validation batch 2000/1125.0
+Validation batch 2100/1125.0
+Validation batch 2200/1125.0
+Validation batch 2300/1125.0
+Validation batch 2400/1125.0
+Validation batch 2500/1125.0
+Validation batch 2600/1125.0
+Validation batch 2700/1125.0
+Validation batch 2800/1125.0
+Validation batch 2900/1125.0
+Validation batch 3000/1125.0
+Validation batch 3100/1125.0
+Validation batch 3200/1125.0
+Validation batch 3300/1125.0
+Validation batch 3400/1125.0
+Validation batch 3500/1125.0
+Validation batch 3600/1125.0
+Validation batch 3700/1125.0
+Validation batch 3800/1125.0
+Validation batch 3900/1125.0
+Validation batch 4000/1125.0
+Validation batch 4100/1125.0
+Validation batch 4200/1125.0
+Validation batch 4300/1125.0
+Validation batch 4400/1125.0
+Validation batch 4500/1125.0
+Validation batch 4600/1125.0
+Validation batch 4700/1125.0
+Validation batch 4800/1125.0
+Validation batch 4900/1125.0
+Validation batch 5000/1125.0
+Validation batch 5100/1125.0
+Validation batch 5200/1125.0
+Validation batch 5300/1125.0
+Validation batch 5400/1125.0
+Validation batch 5500/1125.0
+Validation batch 5600/1125.0
+
+Epoch 1 result: 
+Avg loss (train): 0.0000
+Avg acc (train): 0.0000
+Avg loss (val): 0.0000
+Avg acc (val): 1.3356
+Validation batch 0/1125.0
+Validation batch 100/1125.0
+Validation batch 200/1125.0
+Validation batch 300/1125.0
+Validation batch 400/1125.0
+Validation batch 500/1125.0
+Validation batch 600/1125.0
+Validation batch 700/1125.0
+Validation batch 800/1125.0
+Validation batch 900/1125.0
+Validation batch 1000/1125.0
+Validation batch 1100/1125.0
+Validation batch 1200/1125.0
+Validation batch 1300/1125.0
+Validation batch 1400/1125.0
+Validation batch 1500/1125.0
+Validation batch 1600/1125.0
+Validation batch 1700/1125.0
+Validation batch 1800/1125.0
+Validation batch 1900/1125.0
+Validation batch 2000/1125.0
+Validation batch 2100/1125.0
+Validation batch 2200/1125.0
+Validation batch 2300/1125.0
+Validation batch 2400/1125.0
+Validation batch 2500/1125.0
+Validation batch 2600/1125.0
+Validation batch 2700/1125.0
+Validation batch 2800/1125.0
+Validation batch 2900/1125.0
+Validation batch 3000/1125.0
+Validation batch 3100/1125.0
+Validation batch 3200/1125.0
+Validation batch 3300/1125.0
+Validation batch 3400/1125.0
+Validation batch 3500/1125.0
+Validation batch 3600/1125.0
+Validation batch 3700/1125.0
+Validation batch 3800/1125.0
+Validation batch 3900/1125.0
+Validation batch 4000/1125.0
+Validation batch 4100/1125.0
+Validation batch 4200/1125.0
+Validation batch 4300/1125.0
+Validation batch 4400/1125.0
+Validation batch 4500/1125.0
+Validation batch 4600/1125.0
+Validation batch 4700/1125.0
+Validation batch 4800/1125.0
+Validation batch 4900/1125.0
+Validation batch 5000/1125.0
+Validation batch 5100/1125.0
+Validation batch 5200/1125.0
+Validation batch 5300/1125.0
+Validation batch 5400/1125.0
+Validation batch 5500/1125.0
+Validation batch 5600/1125.0
+
+Epoch 1 result: 
+Avg loss (train): 0.9610
+Avg acc (train): 0.6866
+Avg loss (val): 0.0000
+Avg acc (val): 2.7451
+
+Training completed in 17m 9s
+Best acc: 2.7451
+Testing the trained model
+Test batch 0/1875
+Test batch 100/1875
+Test batch 200/1875
+Test batch 300/1875
+Test batch 400/1875
+Test batch 500/1875
+Test batch 600/1875
+Test batch 700/1875
+Test batch 800/1875
+Test batch 900/1875
+Test batch 1000/1875
+Test batch 1100/1875
+Test batch 1200/1875
+Test batch 1300/1875
+Test batch 1400/1875
+Test batch 1500/1875
+Test batch 1600/1875
+Test batch 1700/1875
+Test batch 1800/1875
+Confusion Matrix
+[[  0  13  62   0   1   0   8   3  20  10   0   0   4   0  19   0   4  31
+    0  23   3   9   0   6   0  13   1  10   7   3]
+ [  0 226   0   0   0   1   0   2   0   0   0   0   0   0   1   0   0   4
+    0   2   0   7   0   3   0   4   0   0   0   0]
+ [  0   6 205   0   0   0   1   0   1   0   0   0   2   0   7   0   3   5
+    0   2   1   7   1   4   0   3   1   0   1   0]
+ [  0   4   0 220   3   8   0   1   0   0   1   1   0   2   0   0   0   7
+    0   0   0   0   0   0   0   3   0   0   0   0]
+ [  0   0   1  21 205   6   0   1   0   0   1   0   0   2   0   0   3   3
+    0   0   0   0   1   0   0   3   0   1   0   2]
+ [  0   2   0  20   1 155   0   2   0   2   3  10   0  25   1   1   4  15
+    0   2   0   1   2   0   0   0   1   0   2   1]
+ [  0   2   0   0   1   0 206   0   1   0   0   0   4   0   0   0   3   7
+    0   1   0  14   0   7   0   1   0   3   0   0]
+ [  0   4   0   2   2   3   0 229   0   0   0   1   0   0   0   1   0   1
+    0   4   0   0   0   0   0   1   0   0   2   0]
+ [  0  33  11   0   2   1   4   8  62   8   1   0   1   0  10   0   1  51
+    0   6   0  12   4   3   1   1   2  23   4   1]
+ [  0  12  10   5   1   1   0   3   0  68   3   0   0   1   2   0   1   4
+    0 107   0   1   0   2   0  23   1   2   1   2]
+ [  0  11   1  43  10  14   0   3   1   6 108   0   0  19   0   2   1   9
+    0  10   0   1   0   0   0   7   1   1   2   0]
+ [  0   1   9  16   4   3   0   6   0   1   0 158   0   4   1   3   1   0
+    0  13   0   0   0   0   0  27   0   0   3   0]
+ [  0   6   9   1   4   1  12   2   2   7   0   0 123   0   2   0   4  38
+    0   7   0  18   2   2   0   5   0   1   2   2]
+ [  0   2   0  26   1  13   0   1   0   0   5   1   0 172   0   1   0  14
+    0   3   0   2   0   0   0   3   0   1   5   0]
+ [  0   3   6   0   1   0   0   1   0   1   0   0   0   0 175   0   1  19
+    0   1   1  26   0   0   0   2   0   1   0  12]
+ [  0   2   1  35  10   9   0   7   0   5   9   7   0  20   1 107   3   1
+    1  14   0   2   2   0   0   9   2   1   2   0]
+ [  0   3   1   1   0   3   1   0   0   0   1   0   0   0   0   1 208   8
+    0   5   0   5   0   3   0   3   1   3   0   3]
+ [  0   0   0   2   1   0   0   1   3   0   0   0   0   0   7   0  10 201
+    0   0   0  15   2   1   0   0   0   5   0   2]
+ [  0  40   6   9   4   0   1  18   3   5   1   1   0   3   3   5   1   2
+   81  24   4   3   0   0   3   3   2  26   2   0]
+ [  0   2   1   3   2   0   0   2   0   2   2   0   0   0   1   0   0   1
+    0 216   0   1   0   1   0  16   0   0   0   0]
+ [  0 101   0   0   2   1   1   1   0   1   5   0   0   1   2   0   0   1
+    0   1  97   0   0  20   0   6   6   3   1   0]
+ [  0   0   0   1   0   1   0   0   1   0   0   0   0   0   2   0   1  31
+    0   0   0 201   4   0   0   0   0   1   0   7]
+ [  0   1   1   1   0   2   0   3   0   0   0   0   3   1   2   3   4  45
+    2   1   0  53  85   7   2   0   0  26   0   8]
+ [  0   6   1   0   0   1   4   1   1   0   0   0   3   0   2   0   4   6
+    0   0   1   9   1 203   0   2   0   4   0   1]
+ [  0   1   1   0   0   0   2   0   0   2   0   1   1   0   0   2   0   0
+    4   4   0   0   2   0 210   3   0  15   2   0]
+ [  0   1   1   4   4   2   0   0   0   1   0   0   0   0   0   0   1   0
+    0   1   0   4   0   0   0 231   0   0   0   0]
+ [  0   8   2   8  31   4   0   6   2   3   5   1   0   0   8   3   5   2
+    0   1   0   1   0   1   0  10 144   3   2   0]
+ [  0   4   2   1   0   0   0   0   0   1   0   0   0   0   3   0   2  15
+    0   1   0   0   0   0   0   0   0 219   1   1]
+ [  0   0   4   3   1   0   0   7   1   4   1   0   0   0   0   0   2   6
+    0   9   0   1   0   0   1  18   1   1 190   0]
+ [  0   1   0   0   0   0   0   1   0   0   0   0   0   0   1   0   3   7
+    0   0   0   9   1   0   2   2   3   1   0 219]]
+------------------------------
+List of classification Accuracy
+[[ 25 231]
+ [  7 229]
+ [  1 226]
+ [  3 220]
+ [ 27 219]
+ [ 29 219]
+ [ 19 216]
+ [ 24 210]
+ [ 16 208]
+ [  6 206]
+ [  2 205]
+ [  4 205]
+ [ 23 203]
+ [ 17 201]
+ [ 21 201]
+ [ 28 190]
+ [ 14 175]
+ [ 13 172]
+ [ 11 158]
+ [  5 155]
+ [ 26 144]
+ [ 12 123]
+ [ 10 108]
+ [ 15 107]
+ [ 20  97]
+ [ 22  85]
+ [ 18  81]
+ [  9  68]
+ [  8  62]]
+
+Evaluation completed in 0m 47s
+Avg loss (test): 0.2666
+Avg acc (test): 0.0000
+----------
