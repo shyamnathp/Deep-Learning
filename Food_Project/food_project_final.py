@@ -669,6 +669,12 @@ for data_dir in ImageDirectory:
     torch.save(vgg16.state_dict(), "VGG16_v1_task2_size_"+str(classification_size)+".pt")
     del vgg16, criterion, optimizer_ft, exp_lr_scheduler, dataloaders, image_datasets
 
+
+data_dir_10 = "/home/student/blastoise/class10"  
+data_dir_30 = "/home/student/blastoise/class30"
+data_dir_100 = "/home/student/blastoise/ImgClass"
+ImageDirectory = [data_dir_10,data_dir_30,data_dir_100]
+
 print("\nRESNET RESULTS\n", file=log)
 k=3
 for data_dir in ImageDirectory:
@@ -704,11 +710,6 @@ log.close()
 # ## VGG16 with label smoothing
 
 # In[ ]:
-
-data_dir_10 = "/home/student/blastoise/class10"  
-data_dir_30 = "/home/student/blastoise/class30"
-data_dir_100 = "/home/student/blastoise/ImgClass"
-ImageDirectory = [data_dir_10,data_dir_30,data_dir_100]
 Epochs = 2
 log = open("Task3_ALL.txt", "w")
 print("\nVGG16_RESULTS\n", file=log)
