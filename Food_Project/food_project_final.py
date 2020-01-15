@@ -634,16 +634,16 @@ def set_up_network_param(net_type ='vgg16', freeze_training = False, clip_classi
 # In[1]:
 
 
-data_dir_10 = "/home/student/blastoise/class10"  
-data_dir_30 = "/home/student/blastoise/class30"
-data_dir_100 = "/home/student/blastoise/ImgClas"
-ImageDirectory = [data_dir_10,data_dir_30,data_dir_100]
+#data_dir_10 = "/home/student/blastoise/class10"  
+#data_dir_30 = "/home/student/blastoise/class30"
+data_dir_100 = "/home/student/blastoise/ImgClass"
+ImageDirectory = [data_dir_100]
 
 TRAIN = 'train'
 TEST = 'test'
 
 Epochs = 2
-log = open("Task2_final_all.txt", "w")
+log = open("Task2_final_class100.txt", "w")
 print("\nVGG16 RESULTS\n", file=log)
 k=3
 for data_dir in ImageDirectory:
@@ -705,7 +705,10 @@ log.close()
 
 # In[ ]:
 
-
+data_dir_10 = "/home/student/blastoise/class10"  
+data_dir_30 = "/home/student/blastoise/class30"
+data_dir_100 = "/home/student/blastoise/ImgClass"
+ImageDirectory = [data_dir_10,data_dir_30,data_dir_100]
 Epochs = 2
 log = open("Task3_ALL.txt", "w")
 print("\nVGG16_RESULTS\n", file=log)
