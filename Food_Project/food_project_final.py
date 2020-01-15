@@ -68,7 +68,7 @@ def data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 
 
     dataloaders = {
         x: torch.utils.data.DataLoader(
-            image_datasets[x], batch_size=2,
+            image_datasets[x], batch_size=4,
             shuffle=True, num_workers=1
         )
         for x in [TRAIN, TEST]
