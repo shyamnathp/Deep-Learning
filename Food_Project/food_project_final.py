@@ -621,7 +621,7 @@ def eval_model(vgg, criterion, label_smoothing = False):
 lr_=0.0005
 momentum_=0.9
 def set_up_network_param(net_type ='vgg16', freeze_training = False, clip_classifier = False, classification_size=10):
-    net = set_up_network(net_type, freeze_training = False, clip_classifier = False, classification_size=10)
+    net = set_up_network(net_type, freeze_training = False, clip_classifier = False, classification_size=classification_size)
     if use_gpu:
         net.cuda() #.cuda() will move everything to the GPU side
     criterion = cal_loss
