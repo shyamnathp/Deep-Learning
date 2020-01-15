@@ -636,7 +636,7 @@ def set_up_network_param(net_type ='vgg16', freeze_training = False, clip_classi
 
 data_dir_10 = "/home/student/blastoise/class10"  
 data_dir_30 = "/home/student/blastoise/class30"
-data_dir_100 = "/home/student/blastoise/ImgClas"
+data_dir_100 = "/home/student/blastoise/ImgClass"
 ImageDirectory = [data_dir_10,data_dir_30,data_dir_100]
 
 TRAIN = 'train'
