@@ -68,7 +68,7 @@ def data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 
 
     dataloaders = {
         x: torch.utils.data.DataLoader(
-            image_datasets[x], batch_size=4,
+            image_datasets[x], batch_size=20,
             shuffle=True, num_workers=1
         )
         for x in [TRAIN, TEST]
@@ -121,7 +121,7 @@ def set_up_network(net, freeze_training = True, clip_classifier = True, classifi
     if net == 'vgg16':
     # Load the pretrained model from pytorch
         network = models.vgg16(pretrained=True)
-        #print(" original vgg16", network)
+        print(" original vgg16", network)
 
         # Freeze training for all layers
         # Newly created modules have require_grad=True by default
@@ -130,24 +130,38 @@ def set_up_network(net, freeze_training = True, clip_classifier = True, classifi
                 param.require_grad = False
 
         if clip_classifier:
-            features = list(network.classifier.children())[:-5] # Remove last layer
+            features = list(network.classifier.children())#[:-5] # Remove last layer
             network.classifier = nn.Sequential(*features) # Replace the model classifier
+            #print(network)
     
     elif net == 'resnet34':
+        #networkvgg = models.vgg16(pretrained=True)
+        #print(networkvgg)
         network = models.resnet34(pretrained=True)
+        #print(network)
         if freeze_training:
-            for param in network.features.parameters():
+            print("doesnt reach")
+            for param in network.parameters():
                 param.require_grad = False
         
         if clip_classifier:
-            features = list(network.classifier.children())[:-4] # Remove last layer
-            network.classifier = nn.Sequential(*features) # Replace the model classifier
+            print("resnet clipclassifier")
+            features = list(network.children())#[:-1] # Remove last layer
+            network = nn.Sequential(*features) # Replace the model classifier
     if classification_size != 1000 and clip_classifier == False:
-        num_features = network.classifier[6].in_features
-        features = list(network.classifier.children())[:-1] # Remove last layer
-        features.extend([nn.Linear(num_features, classification_size)]) # Add our layer with 4 outputs
-        network.classifier = nn.Sequential(*features) # Replace the model cla
+        if(net == 'vgg16'):
+          #print("inside vgg")
+          num_features = network.classifier[6].in_features
+          features = list(network.classifier.children())[:-1] # Remove last layer
+          features.extend([nn.Linear(num_features, classification_size)]) # Add our layer with 4 outputs
+          network.classifier = nn.Sequential(*features) # Replace the model cla
+        elif(net == 'resnet34'):
+          #print("inside resnet")
+          num_features = network.fc.in_features
+          print(num_features)
+          network.fc = nn.Linear(num_features, classification_size)
     #print("modified vgg16", network)
+    print(network)
     return network
 
 # ## Task 1: Update Features
@@ -423,9 +437,11 @@ def train_model(vgg, criterion, optimizer, scheduler, dataloaders, num_epochs=10
         kf = sklearn.model_selection.KFold(n_splits=K)
         kf.get_n_splits(train_bat)
 
-    
+        j=0
+        pred_total = []
+        out_total = []
         for train, test in kf.split(train_bat):
-        
+            j+=1
             for i, data in enumerate(dataloaders[TRAIN]):
                 #print("i is ",i)
                 if i % 100 == 0:
@@ -500,8 +516,36 @@ def train_model(vgg, criterion, optimizer, scheduler, dataloaders, num_epochs=10
                 loss_train += loss.item()
                 acc_val += torch.sum(preds == labels.data)
 
+                pred_total.append(preds.unsqueeze(0))
+                out_total.append((labels.data).unsqueeze(0))
+
                 del inputs, labels, outputs, preds
                 torch.cuda.empty_cache()
+
+            if(j==K):
+                #print("pred_total count", pred_total) 
+                pred_tot_single = torch.cat(pred_total)
+                out_tot_single = torch.cat(out_total)
+
+                pred_np = pred_tot_single.cpu().clone().numpy()
+                output_np = out_tot_single.data.cpu().clone().numpy()
+                y_label = output_np.ravel()
+                out_predict = pred_np.ravel()
+
+                #print("y_label", y_label.shape)
+                #print("out_predict", out_predict.shape)
+
+                print("Confusion Matrix", file=log)
+                print(confusion_matrix(y_label, out_predict), file=log)  
+                print("-"*30, file=log)
+
+                print("List of classification Accuracy", file = log)
+                data = Counter(y_label[y_label==out_predict])
+                stat = data.most_common()
+                stat = np.array(stat)
+                print(stat,file=log)   # Returns all unique items and their counts
+                elapsed_time = time.time() - since
+                print(file = log)
 
             avg_loss_val = loss_val / (dataset_sizes[TRAIN]*0.2)
             avg_acc_val = acc_val / (dataset_sizes[TRAIN]*0.2)
@@ -642,8 +686,8 @@ ImageDirectory = [data_dir_100]
 TRAIN = 'train'
 TEST = 'test'
 
-Epochs = 2
-log = open("Task2_final_class100.txt", "w")
+Epochs = 10
+log = open("Task2_final_class101.txt", "w")
 print("\nVGG16 RESULTS\n", file=log)
 k=3
 for data_dir in ImageDirectory:
@@ -705,12 +749,12 @@ log.close()
 
 # In[ ]:
 
-data_dir_10 = "/home/student/blastoise/class10"  
-data_dir_30 = "/home/student/blastoise/class30"
+#data_dir_10 = "/home/student/blastoise/class10"  
+#data_dir_30 = "/home/student/blastoise/class30"
 data_dir_100 = "/home/student/blastoise/ImgClass"
-ImageDirectory = [data_dir_10,data_dir_30,data_dir_100]
-Epochs = 2
-log = open("Task3_ALL.txt", "w")
+ImageDirectory = [data_dir_100]
+Epochs = 10
+log = open("Task3_class101.txt", "w")
 print("\nVGG16_RESULTS\n", file=log)
 k=3
 for data_dir in ImageDirectory:
