@@ -752,7 +752,7 @@ log.close()
 data_dir_10 = "/home/student/blastoise/class10"  
 data_dir_30 = "/home/student/blastoise/class30"
 data_dir_100 = "/home/student/blastoise/ImgClass"
-ImageDirectory = [data_dir_100]
+ImageDirectory = [data_dir_10,data_dir_30,data_dir_100]
 Epochs = 10
 log = open("Task3_class10_30_100.txt", "w")
 print("\nVGG16_RESULTS\n", file=log)
