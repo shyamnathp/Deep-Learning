@@ -438,8 +438,7 @@ def train_model(vgg, criterion, optimizer, scheduler, dataloaders, num_epochs=10
         kf.get_n_splits(train_bat)
 
         j=0
-        pred_total = []
-        out_total = []
+
         for train, test in kf.split(train_bat):
             j+=1
             for i, data in enumerate(dataloaders[TRAIN]):
@@ -487,6 +486,8 @@ def train_model(vgg, criterion, optimizer, scheduler, dataloaders, num_epochs=10
 
             vgg.train(False)
             vgg.eval()
+            pred_total = []
+            out_total = []
 
             for i, data in enumerate(dataloaders[TRAIN]):
                 if i % 100 == 0:
