@@ -68,7 +68,7 @@ def data_loader(data_dir, TRAIN, TEST, image_crop_size = 224, mini_batch_size = 
 
     dataloaders = {
         x: torch.utils.data.DataLoader(
-            image_datasets[x], batch_size=20,
+            image_datasets[x], batch_size=50,
             shuffle=True, num_workers=1
         )
         for x in [TRAIN, TEST]
@@ -687,7 +687,7 @@ ImageDirectory = [data_dir_100]
 TRAIN = 'train'
 TEST = 'test'
 
-Epochs = 10
+Epochs = 3
 log = open("Task2_final_class100.txt", "w")
 print("\nVGG16 RESULTS\n", file=log)
 k=3
@@ -754,7 +754,7 @@ data_dir_10 = "/home/student/blastoise/class10"
 data_dir_30 = "/home/student/blastoise/class30"
 data_dir_100 = "/home/student/blastoise/ImgClass"
 ImageDirectory = [data_dir_10,data_dir_30,data_dir_100]
-Epochs = 10
+Epochs = 3
 log = open("Task3_class10_30_100.txt", "w")
 print("\nVGG16_RESULTS\n", file=log)
 k=3
