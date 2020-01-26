@@ -807,6 +807,6 @@ for data_dir in ImageDirectory:
     eval_model(resnet34, criterion, label_smoothing = True)
     k=k-1
     # Save the trained Model
-    torch.save(vgg16.state_dict(), "RESNET34_v1_task3_size_"+str(classification_size)+".pt")
+    torch.save(resnet34.state_dict(), "RESNET34_v1_task3_size_"+str(classification_size)+".pt")
     del resnet34, criterion, optimizer_ft, exp_lr_scheduler, dataloaders, image_datasets
 log.close()
